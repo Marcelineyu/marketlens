@@ -1,0 +1,4 @@
+import { expect,it } from 'vitest';import * as XLSX from 'xlsx';import { parseFile } from '../utils/fileParsing';
+it('parses CSV files',async()=>{const f=new File(['name,value\nA,2\nB,3'],'test.csv',{type:'text/csv'});Object.defineProperty(f,'text',{value:async()=> 'name,value\nA,2\nB,3'});expect(await parseFile(f)).toHaveLength(2)});
+it('parses Excel files',async()=>{const wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,XLSX.utils.json_to_sheet([{name:'A',value:2}]),'Data');const b=XLSX.write(wb,{type:'array',bookType:'xlsx'});const f=new File([b],'test.xlsx');Object.defineProperty(f,'arrayBuffer',{value:async()=>b});expect(await parseFile(f)).toEqual([{name:'A',value:2}])});
+it('rejects empty and unsupported files',async()=>{const empty=new File([''],'empty.csv');Object.defineProperty(empty,'text',{value:async()=>''});await expect(parseFile(empty)).rejects.toThrow('empty');await expect(parseFile(new File(['x'],'notes.txt'))).rejects.toThrow('CSV')});
