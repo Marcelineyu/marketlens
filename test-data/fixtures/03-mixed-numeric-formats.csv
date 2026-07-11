@@ -1,0 +1,3 @@
+label,currency,rate,thousands,numeric_string,negative,zero,blank,invalid
+A,"$1,250.50",18%,"1,400","42.5",-12,0,,not-a-number
+B,"$980.00",7.5%,"2,050","18",-4,0,,n/a

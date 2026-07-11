@@ -1,9 +1,10 @@
 import { ChartSpec,ColumnProfile } from '../types';
+import { finiteNumber } from './numeric';
 
 const binaryOutcomeName=/^(y|outcome|result|converted|conversion|subscribed|success)$/i;
 const numericTargetName=/^(sales|revenue|profit|conversions|conversion|outcome|target|y|orders)$/i;
 const displayName=(name:string,start=false)=>{const clean=name.trim().replace(/[_-]+/g,' ').replace(/\s+/g,' ');return start&&clean?clean[0].toUpperCase()+clean.slice(1):clean};
-const correlation=(a:ColumnProfile,b:ColumnProfile)=>{const pairs=a.values.map((value,i)=>[Number(value),Number(b.values[i])] as const).filter(([x,y])=>Number.isFinite(x)&&Number.isFinite(y));if(pairs.length<3)return 0;const ax=pairs.reduce((sum,[x])=>sum+x,0)/pairs.length,ay=pairs.reduce((sum,[,y])=>sum+y,0)/pairs.length;let numerator=0,dx=0,dy=0;for(const [x,y] of pairs){numerator+=(x-ax)*(y-ay);dx+=(x-ax)**2;dy+=(y-ay)**2}return dx&&dy?Math.abs(numerator/Math.sqrt(dx*dy)):0};
+export const numericCorrelation=(a:ColumnProfile,b:ColumnProfile)=>{const pairs:[number,number][]=[];a.values.forEach((value,i)=>{const x=finiteNumber(value),y=finiteNumber(b.values[i]);if(x!==undefined&&y!==undefined)pairs.push([x,y])});if(pairs.length<3)return 0;const ax=pairs.reduce((sum,[x])=>sum+x,0)/pairs.length,ay=pairs.reduce((sum,[,y])=>sum+y,0)/pairs.length;let numerator=0,dx=0,dy=0;for(const [x,y] of pairs){numerator+=(x-ax)*(y-ay);dx+=(x-ax)**2;dy+=(y-ay)**2}return dx&&dy?Math.abs(numerator/Math.sqrt(dx*dy)):0};
 
 export function preferredBinary(profiles:ColumnProfile[]){return profiles.find(x=>x.type==='binary'&&binaryOutcomeName.test(x.name))||profiles.find(x=>x.type==='binary')}
 export function preferredNumericTarget(profiles:ColumnProfile[]){return profiles.find(x=>x.type==='numeric'&&numericTargetName.test(x.name.trim()))}
@@ -18,7 +19,7 @@ export function suggestCharts(profiles:ColumnProfile[]):ChartSpec[]{
  if(binary)out.push({id:'outcome',title:`${displayName(binary.name,true)} outcome`,subtitle:'Counts and share of records',kind:'donut',x:binary.name,featured:true});
  if(target){
   out.push({id:'target-distribution',title:`${displayName(target.name,true)} distribution`,subtitle:'Distribution across the observed range',kind:'histogram',x:target.name,featured:!binary});
-  nums.filter(x=>x.name!==target.name).map((profile,index)=>({profile,index,strength:correlation(profile,target)})).sort((a,b)=>b.strength-a.strength||a.index-b.index).slice(0,3).forEach(({profile},index)=>out.push({id:`target-scatter-${index}`,title:`${displayName(profile.name,true)} vs ${displayName(target.name)}`,subtitle:`Relationship with ${displayName(target.name)}`,kind:'scatter',x:profile.name,y:target.name}));
+  nums.filter(x=>x.name!==target.name).map((profile,index)=>({profile,index,strength:numericCorrelation(profile,target)})).sort((a,b)=>b.strength-a.strength||a.index-b.index).slice(0,3).forEach(({profile},index)=>out.push({id:`target-scatter-${index}`,title:`${displayName(profile.name,true)} vs ${displayName(target.name)}`,subtitle:`Relationship with ${displayName(target.name)}`,kind:'scatter',x:profile.name,y:target.name}));
   if(date&&out.length<6)out.push({id:'target-trend',title:`${displayName(target.name,true)} over time`,subtitle:`Average ${displayName(target.name)} by date`,kind:'line',x:date.name,y:target.name,aggregation:'average'});
  }else{
   if(date&&nums[0])out.push({id:'trend',title:`${displayName(nums[0].name,true)} over time`,subtitle:`Average ${displayName(nums[0].name)} by date`,kind:'line',x:date.name,y:nums[0].name,aggregation:'average',featured:!binary});

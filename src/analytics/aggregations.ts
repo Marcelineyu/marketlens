@@ -1,5 +1,14 @@
-import { Aggregation, Row } from '../types';
-export const median=(a:number[])=>{const s=[...a].sort((x,y)=>x-y);return s.length?(s[Math.floor((s.length-1)/2)]+s[Math.ceil((s.length-1)/2)])/2:0};
-export function aggregate(rows:Row[],group:string,value:string|undefined,op:Aggregation='count',outcome?:string){const groups=new Map<string,Row[]>();for(const r of rows){const k=String(r[group]??'Missing');groups.set(k,[...(groups.get(k)||[]),r])}return [...groups].map(([name,rs])=>{const nums=value?rs.map(r=>Number(r[value])).filter(Number.isFinite):[];let result=rs.length;if(op==='sum')result=nums.reduce((a,b)=>a+b,0);if(op==='average')result=nums.reduce((a,b)=>a+b,0)/(nums.length||1);if(op==='median')result=median(nums);if(op==='minimum')result=Math.min(...nums);if(op==='maximum')result=Math.max(...nums);if(op==='outcomeRate'&&outcome)result=rs.filter(r=>isPositive(r[outcome])).length/rs.length*100;return{name,value:result,count:rs.length}})}
-export const isPositive=(v:unknown)=>['yes','true','success','converted','1'].includes(String(v).toLowerCase());
-export function topN(data:{name:string;value:number;count?:number}[],n=10){const s=[...data].sort((a,b)=>b.value-a.value);if(s.length<=n)return s;const rest=s.slice(n);return[...s.slice(0,n),{name:'Other',value:rest.reduce((a,b)=>a+b.value,0),count:rest.reduce((a,b)=>a+(b.count||0),0)}]}
+import { Aggregation,Row } from '../types';
+import { numericValues } from './numeric';
+
+export const median=(values:number[])=>{const sorted=[...values].sort((a,b)=>a-b);return sorted.length?(sorted[Math.floor((sorted.length-1)/2)]+sorted[Math.ceil((sorted.length-1)/2)])/2:0};
+const requiresNumericValues=(op:Aggregation)=>['sum','average','median','minimum','maximum'].includes(op);
+
+export function aggregate(rows:Row[],group:string,value:string|undefined,op:Aggregation='count',outcome?:string){
+ const groups=new Map<string,Row[]>();
+ for(const row of rows){const key=String(row[group]??'Missing');groups.set(key,[...(groups.get(key)||[]),row])}
+ return [...groups].flatMap(([name,groupRows])=>{const nums=value?numericValues(groupRows.map(row=>row[value])):[];if(value&&requiresNumericValues(op)&&!nums.length)return[];let result=groupRows.length;if(op==='sum')result=nums.reduce((sum,n)=>sum+n,0);if(op==='average')result=nums.reduce((sum,n)=>sum+n,0)/nums.length;if(op==='median')result=median(nums);if(op==='minimum')result=Math.min(...nums);if(op==='maximum')result=Math.max(...nums);if(op==='outcomeRate'&&outcome)result=groupRows.filter(row=>isPositive(row[outcome])).length/groupRows.length*100;return[{name,value:result,count:groupRows.length}]})
+}
+
+export const isPositive=(value:unknown)=>['yes','true','success','converted','1'].includes(String(value).toLowerCase());
+export function topN(data:{name:string;value:number;count?:number}[],n=10){const sorted=[...data].sort((a,b)=>b.value-a.value);if(sorted.length<=n)return sorted;const rest=sorted.slice(n);return[...sorted.slice(0,n),{name:'Other',value:rest.reduce((sum,row)=>sum+row.value,0),count:rest.reduce((sum,row)=>sum+(row.count||0),0)}]}

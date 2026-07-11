@@ -1,0 +1,27 @@
+import { mkdirSync,writeFileSync } from 'node:fs';
+import { dirname,join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import * as XLSX from 'xlsx';
+
+const root=join(dirname(fileURLToPath(import.meta.url)),'fixtures');
+mkdirSync(root,{recursive:true});
+const csv=(rows)=>{const headers=[...new Set(rows.flatMap(Object.keys))],escape=(value)=>{if(value===null||value===undefined)return'';const text=String(value);return /[",\n]/.test(text)?`"${text.replaceAll('"','""')}"`:text};return[headers.join(','),...rows.map(row=>headers.map(header=>escape(row[header])).join(','))].join('\n')};
+const save=(name,rows)=>writeFileSync(join(root,name),csv(rows));
+
+save('01-retail-sales.csv',Array.from({length:96},(_,i)=>{const month=i%12,region=['North','South','East','West'][i%4],category=['Home','Beauty','Tech'][i%3],quantity=1+i%5,revenue=Math.round((180+month*22+(category==='Tech'?month*18:category==='Beauty'?-month*7:month*5)+(i%7)*11)*100)/100,cost=Math.round(revenue*(.52+(i%4)*.04)*100)/100;return{Date:`2025-${String(month+1).padStart(2,'0')}-${String(i%27+1).padStart(2,'0')}`,'Order ID':`ORD-${1000+i}`,'Customer ID':`CUS-${200+i%45}`,Region:region,'Product Category':category,Product:`${category} Product ${i%8+1}`,Revenue:revenue,Cost:cost,Profit:Math.round((revenue-cost)*100)/100,Quantity:quantity,'Marketing Spend':80+(i%10)*17}}));
+writeFileSync(join(root,'02-missing-values.csv'),'group,value,category,notes\nA,,,complete category missing\nA,,Retail,\nB,4,Wholesale,partial\nB,8, ,whitespace category\nC,,Online,');
+writeFileSync(join(root,'03-mixed-numeric-formats.csv'),'label,currency,rate,thousands,numeric_string,negative,zero,blank,invalid\nA,"$1,250.50",18%,"1,400","42.5",-12,0,,not-a-number\nB,"$980.00",7.5%,"2,050","18",-4,0,,n/a');
+save('04-identifier-only-strings.csv',Array.from({length:30},(_,i)=>({'Customer ID':`CUS-${1000+i}`,'Order ID':`ORD-${9000+i}`,'Account ID':`ACC-${5000+i}`,'Transaction UUID':`00000000-0000-4000-8000-${String(i).padStart(12,'0')}`})));
+save('05-identifier-only-numeric.csv',Array.from({length:30},(_,i)=>({'Customer ID':100001+i,'Order ID':90000021+i,'Account Number':45001234+i})));
+save('06-identifier-plus-metric.csv',Array.from({length:40},(_,i)=>({'Customer ID':100001+i,Revenue:100+i*12})));
+save('07-valid-id-substrings.csv',Array.from({length:40},(_,i)=>({'Paid Revenue':200+i*9,'Paid Orders':2+i%7,'Bid Amount':1.5+i*.2,Dividend:i*.5,'Midmarket Sales':80+i*4})));
+save('08-no-date.csv',Array.from({length:48},(_,i)=>({Region:['North','South','East','West'][i%4],'Product Category':['Home','Beauty','Tech'][i%3],Revenue:120+i*8,Profit:30+(i%9)*5})));
+save('09-date-and-identifiers.csv',Array.from({length:30},(_,i)=>({Date:`2025-01-${String(i%28+1).padStart(2,'0')}`,'Order ID':`ORD-${i}`,'Customer ID':`CUS-${100+i}`})));
+save('10-single-metric.csv',Array.from({length:40},(_,i)=>({'Transaction ID':`TX-${i}`,Revenue:50+i*7})));
+save('11-empty-filter.csv',Array.from({length:40},(_,i)=>({channel:['Search','Email'][i%2],campaign:i%2?'Retention':'Acquisition',revenue:100+i*5})));
+save('12-pagination.csv',Array.from({length:125},(_,i)=>({record_id:`REC-${i}`,segment:['A','B','C'][i%3],value:i*2})));
+save('13-advertising.csv',Array.from({length:200},(_,i)=>{const TV=(i*17)%300,Search=(i*11)%180,Social=(i*7)%120,Radio=(i*5)%80;return{'TV Spend':TV,'Search Spend':Search,'Social Spend':Social,'Radio Spend':Radio,Sales:Number((5+TV*.04+Search*.06+Social*.02+Radio*.03).toFixed(2))}}));
+writeFileSync(join(root,'14-malformed.csv'),'name,value,region\n"Alpha, North",10,North\nBeta,20,South,EXTRA\nGamma\nDelta,40,West\n\n');
+const workbook=XLSX.utils.book_new(),sheet=XLSX.utils.aoa_to_sheet([['Date','Region','Revenue','Later Metric'],[new Date('2025-01-01'),'North',120,null],[new Date('2025-01-02'),'South',180,7],[new Date('2025-01-03'),'East',210,9]]);XLSX.utils.book_append_sheet(workbook,sheet,'Data');XLSX.writeFile(workbook,join(root,'15-native-types.xlsx'));
+save('16-large-reasonable.csv',Array.from({length:1500},(_,i)=>({date:`2025-${String(i%12+1).padStart(2,'0')}-${String(i%28+1).padStart(2,'0')}`,channel:['Search','Social','Email','Display'][i%4],campaign:`Campaign ${i%10}`,spend:100+i%500,conversions:3+i%45,revenue:200+(i*13)%1800})));
+console.log(`Generated fixtures in ${root}`);

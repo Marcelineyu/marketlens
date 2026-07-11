@@ -1,0 +1,6 @@
+group,value,category,notes
+A,,,complete category missing
+A,,Retail,
+B,4,Wholesale,partial
+B,8, ,whitespace category
+C,,Online,
