@@ -4,6 +4,8 @@ Turn your CSV into clear, beautiful insights.
 
 MarketLens is a client-side data exploration portfolio project built by Marceline Yu. It profiles CSV and Excel files, suggests useful charts from the available fields, supports filtering and custom chart creation, and keeps uploaded data in the browser.
 
+Scatter plots label both selected fields, and histograms label the analyzed field and frequency axis. If a file contains identifiers only, MarketLens preserves its summary and preview while explaining which business fields are needed before analysis can be generated.
+
 ## Why I Simplified the Product
 
 The first version of MarketLens tried to force uploaded datasets into predefined marketing concepts such as campaigns, funnels, and RFM segments. Testing the application with the UCI Bank Marketing dataset revealed that this approach could produce misleading field mappings and analyses.
@@ -31,6 +33,14 @@ Production verification:
 npm test
 npm run build
 ```
+
+Deterministic QA fixtures are documented in [`test-data/README.md`](test-data/README.md). Regenerate all 16 fictional CSV/XLSX fixtures with:
+
+```bash
+node test-data/generate-fixtures.mjs
+```
+
+The embedded browser environment may not expose a reliable local-file chooser to automation. Browser-upload coverage should only be reported when the file input was exercised successfully; parser and fixture regressions are also covered by the automated test suite.
 
 ## Author
 

@@ -21,14 +21,23 @@
 | QA-08 | Built-in Ecommerce | Load the demo from a clean browser state | IDs excluded; `order_date` is the line X-axis | Hyphenated IDs were parsed as dates and `order_id` became the time axis | High | Fixed and browser re-verified |
 | QA-09 | Malformed CSV | Parse rows with extra or missing fields | Clear parse error | Structurally inconsistent rows could be accepted | Medium | Fixed and regression tested |
 
+## Focused low-priority QA
+
+| ID | Fixture or flow | Steps | Expected | Actual | Reproducible | Severity | Status | Production code changed |
+| -- | --------------- | ----- | -------- | ------ | ------------ | -------- | ------ | ----------------------- |
+| QA-10 | Ecommerce demo | Load the demo and inspect the distribution and relationship charts at desktop and mobile widths | Readable field-specific axes with no clipping or page overflow | `Revenue`/`Frequency` and `Quantity`/`Revenue` labels remained inside their cards | Yes | Low | Fixed and verified | Yes |
+| QA-11 | Identifier-only fixtures | Profile string, UUID, numeric, date-like numeric, and mixed identifier schemas | No analytical charts, KPIs, or observations; explain recovery | Dedicated explanation, profile, preview, and upload recovery action | Yes | Low | Fixed and regression tested | Yes |
+| QA-12 | Identifier plus business field | Profile IDs with revenue, profit, status, region, or date plus revenue | Dataset remains chartable | Identifier-only state was not shown | Yes | Regression guard | Passed | No |
+| QA-13 | Embedded file chooser | Attempt local fixture selection through browser automation | Exercise real upload when the environment supports it | The embedded browser did not expose reliable local-file assignment | Yes | Test-environment limitation | Documented, not a product defect | No |
+
 ## Final validation
 
-- Automated tests: 38 passed across 4 files.
-- Production build: passed, 593 modules transformed.
-- Browser regression: Ecommerce reports one date field; both ID fields are disabled for line X; `order_date` is selected.
+- Run `npm test` for the current automated result and `npm run build` for the current production bundle.
+- Browser regression coverage includes Ecommerce date/ID detection; both ID fields are disabled for line X and `order_date` is selected.
 - Known expected warning: Vite reports the main minified chunk above 500 kB. No low-risk optimization was required in this QA pass.
 
-## Remaining low-priority limitations
+## Low-priority improvements completed
 
-- Identifier-only datasets do not have a dedicated explanatory empty-state message.
-- Some charts rely on titles and tick labels instead of explicit axis/unit labels.
+- Scatter plots now label the selected X and Y fields with readable field names.
+- Histograms now label the analyzed numeric field and use `Frequency` consistently for the count axis.
+- Identifier-only datasets now suppress analysis and show a dedicated explanation, recovery action, column profile, and data preview.

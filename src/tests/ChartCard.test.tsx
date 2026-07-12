@@ -3,6 +3,7 @@ import { expect,it,vi } from 'vitest';
 import ChartCard,{chartData,chartExportRows,paintPngCanvas} from '../components/ChartCard';
 import { ChartSpec,Row } from '../types';
 import { toCsv } from '../utils/csvExport';
+import { fieldLabel } from '../utils/fieldLabel';
 
 const scatterSpec:ChartSpec={id:'scatter-test',title:'Scatter test',subtitle:'Numeric relationship',kind:'scatter',x:'x',y:'y'};
 
@@ -13,3 +14,6 @@ it('excludes missing values from numeric chart data',()=>{const histogram=chartD
 it('uses field-aware chart CSV headers',()=>{const scatter=chartData([{TV:10,sales:4},{TV:20,sales:8}],{...scatterSpec,x:'TV',y:'sales'});expect(toCsv(chartExportRows(scatter,{...scatterSpec,x:'TV',y:'sales'})).split('\n')[0].trim()).toBe('TV,sales');const histogram=chartData([{sales:4},{sales:8}],{id:'sales-dist',title:'Sales distribution',subtitle:'Distribution',kind:'histogram',x:'sales'});expect(toCsv(chartExportRows(histogram,{id:'sales-dist',title:'Sales distribution',subtitle:'Distribution',kind:'histogram',x:'sales'})).split('\n')[0].trim()).toBe('sales range,count')});
 
 it('shows the scatter sampling note only when more than 800 valid points exist',()=>{const sampled=Array.from({length:801},(_,i)=>({x:i,y:i*2}));const {rerender}=render(<ChartCard rows={sampled} spec={scatterSpec}/>);expect(screen.getByText('Showing a sample of 800 records for performance.')).toBeInTheDocument();rerender(<ChartCard rows={sampled.slice(0,800)} spec={scatterSpec}/>);expect(screen.queryByText('Showing a sample of 800 records for performance.')).not.toBeInTheDocument()});
+it('formats machine-style field names consistently',()=>{expect(fieldLabel('ad_spend')).toBe('Ad Spend');expect(fieldLabel('total-sales')).toBe('Total Sales');expect(fieldLabel('customerAge')).toBe('Customer Age');expect(fieldLabel('TV')).toBe('TV')});
+it('labels scatter axes with the selected fields',()=>{render(<ChartCard rows={[{ad_spend:10,total_sales:20},{ad_spend:20,total_sales:35}]} spec={{...scatterSpec,x:'ad_spend',y:'total_sales'}}/>);expect(screen.getByText('Ad Spend')).toBeInTheDocument();expect(screen.getByText('Total Sales')).toBeInTheDocument()});
+it('labels histogram axes with the analyzed field and frequency',()=>{render(<ChartCard rows={[{customer_age:20},{customer_age:35}]} spec={{id:'age-hist',title:'Age distribution',subtitle:'Distribution',kind:'histogram',x:'customer_age'}}/>);expect(screen.getByText('Customer Age')).toBeInTheDocument();expect(screen.getByText('Frequency')).toBeInTheDocument()});

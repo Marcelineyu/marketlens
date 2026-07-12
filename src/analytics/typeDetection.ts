@@ -21,4 +21,5 @@ export function profileRows(rows:Row[]):ColumnProfile[]{
  const names=Array.from(new Set(rows.flatMap(Object.keys)));
  return names.map(name=>{const values=rows.map(r=>r[name]);const p=values.filter(v=>!missing(v));return{name,type:detectType(values,name),missing:values.length-p.length,unique:new Set(p.map(String)).size,examples:Array.from(new Set(p.map(String))).slice(0,3),values}})
 }
+export const isIdentifierOnlyDataset=(profiles:ColumnProfile[])=>profiles.length>0&&profiles.every(profile=>profile.type==='identifier');
 export const isMissing=missing;
