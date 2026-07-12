@@ -24,4 +24,8 @@ save('13-advertising.csv',Array.from({length:200},(_,i)=>{const TV=(i*17)%300,Se
 writeFileSync(join(root,'14-malformed.csv'),'name,value,region\n"Alpha, North",10,North\nBeta,20,South,EXTRA\nGamma\nDelta,40,West\n\n');
 const workbook=XLSX.utils.book_new(),sheet=XLSX.utils.aoa_to_sheet([['Date','Region','Revenue','Later Metric'],[new Date('2025-01-01'),'North',120,null],[new Date('2025-01-02'),'South',180,7],[new Date('2025-01-03'),'East',210,9]]);XLSX.utils.book_append_sheet(workbook,sheet,'Data');XLSX.writeFile(workbook,join(root,'15-native-types.xlsx'));
 save('16-large-reasonable.csv',Array.from({length:1500},(_,i)=>({date:`2025-${String(i%12+1).padStart(2,'0')}-${String(i%28+1).padStart(2,'0')}`,channel:['Search','Social','Email','Display'][i%4],campaign:`Campaign ${i%10}`,spend:100+i%500,conversions:3+i%45,revenue:200+(i*13)%1800})));
+save('17-category-ties.csv',[...Array.from({length:8},(_,i)=>({Region:i<4?'North':'South',Revenue:100+i})),...Array.from({length:4},(_,i)=>({Region:'East',Revenue:120+i}))]);
+writeFileSync(join(root,'18-accounting-mostly-numeric.csv'),['Revenue,Profit',...Array.from({length:19},(_,i)=>`${100+i},${i%3===0?`(${300+i})`:300+i}`),'invalid,invalid'].join('\n'));
+save('19-constant-and-near-constant.csv',Array.from({length:30},(_,i)=>({Price:100,NearConstant:1+(i%3)*1e-14,Revenue:200+i*11})));
+save('20-weak-valid-correlation.csv',Array.from({length:30},(_,i)=>({Spend:i+1,Revenue:(i*7)%23+i*.05})));
 console.log(`Generated fixtures in ${root}`);

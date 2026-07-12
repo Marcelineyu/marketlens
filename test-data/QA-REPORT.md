@@ -2,7 +2,7 @@
 
 ## Coverage
 
-- Created 16 deterministic CSV/XLSX fixtures covering retail, missing values, formatted numbers, identifiers, dates, pagination, Advertising-style targets, malformed input, native Excel types, and 1,500-row data.
+- Maintains 20 deterministic CSV/XLSX fixtures covering retail, missing values, formatted and accounting-style numbers, identifiers, dates, pagination, Advertising-style targets, malformed input, native Excel types, 1,500-row data, category ties, constant fields, and weak correlations.
 - Exercised the built-in Ecommerce flow from a clean load in the embedded browser, including type detection, automatic charts, observations, chart-builder defaults, filters, preview, and the full data table.
 - Verified fixture-backed parsing, type detection, chart recommendations, filtering, exports, empty states, pagination, and chart behavior through automated regression tests.
 - The embedded browser's file control did not expose a reliable local-file assignment or Windows picker automation path. External fixture uploads therefore were not claimed as completed browser E2E coverage.
@@ -29,6 +29,11 @@
 | QA-11 | Identifier-only fixtures | Profile string, UUID, numeric, date-like numeric, and mixed identifier schemas | No analytical charts, KPIs, or observations; explain recovery | Dedicated explanation, profile, preview, and upload recovery action | Yes | Low | Fixed and regression tested | Yes |
 | QA-12 | Identifier plus business field | Profile IDs with revenue, profit, status, region, or date plus revenue | Dataset remains chartable | Identifier-only state was not shown | Yes | Regression guard | Passed | No |
 | QA-13 | Embedded file chooser | Attempt local fixture selection through browser automation | Exercise real upload when the environment supports it | The embedded browser did not expose reliable local-file assignment | Yes | Test-environment limitation | Documented, not a product defect | No |
+| QA-14 | Equal-frequency categories | Load evenly distributed and two-way tie data | Do not choose an arbitrary “most common” value | Even distributions and short ties use tie-aware wording | Yes | Low | Fixed and regression tested | Yes |
+| QA-15 | Constant and near-constant fields | Evaluate target correlations and scatter recommendations | Suppress undefined relationships and uninformative scatters | Zero/near-zero variance pairs are excluded; weak non-constant pairs remain eligible | Yes | Low | Fixed and regression tested | Yes |
+| QA-16 | Accounting and mostly numeric values | Parse parenthesized negatives and columns with a few invalid cells | Preserve valid numbers, mark invalid cells missing, do not fabricate zeroes | Accounting values parse correctly; 90% threshold keeps mostly numeric columns numeric | Yes | Low | Fixed and regression tested | Yes |
+| QA-17 | Constant/narrow histograms and decimal exports | Build histograms and export computed aggregates | Distinct bins, no negative zero, no floating artifacts | Constant fields use one bin; narrow labels retain precision; computed values are cleaned | Yes | Low | Fixed and regression tested | Yes |
+| QA-18 | Missing category filter | Select the missing category and export filtered rows | Use “Missing” consistently while preserving null source values | UI and charts use “Missing”; export keeps source nulls | Yes | Low | Fixed and regression tested | Yes |
 
 ## Final validation
 

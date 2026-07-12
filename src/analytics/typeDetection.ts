@@ -1,4 +1,4 @@
-import { ColumnProfile, ColumnType, Row } from '../types';
+import { ColumnProfile, ColumnType, Row } from '../types';import { finiteNumber } from './numeric';
 const missing=(v:unknown)=>v===null||v===undefined||String(v).trim()==='';
 const binaryWords=new Set(['yes','no','true','false','success','failure','converted','not converted','1','0']);
 const indexName=(name:string)=>{const n=name.trim().toLowerCase().replace(/[._-]+/g,' ').replace(/\s+/g,' ');return n===''||/^unnamed(?::?\s*\d+)?$/.test(n)||/^(index|row|row number|row num|row id)$/.test(n)};
@@ -8,8 +8,8 @@ export function detectType(values:unknown[], name=''):ColumnType{
  const present=values.filter(v=>!missing(v)); if(!present.length)return 'categorical';
  const strings=present.map(v=>String(v).trim()); const unique=new Set(strings); const ratio=unique.size/present.length;
  const low=strings.map(v=>v.toLowerCase()); if(unique.size===2&&low.every(v=>binaryWords.has(v)))return 'binary';
- const numeric=strings.filter(v=>v!==''&&Number.isFinite(Number(v))).length/present.length;
- if(numeric>.95){const nums=strings.map(Number);if(ratio>.9&&indexName(name)&&sequential(nums))return 'identifier';if(ratio>.96&&present.length>20&&identifierName(name))return 'identifier';return 'numeric'}
+ const numeric=strings.filter(v=>finiteNumber(v)!==undefined).length/present.length;
+ if(numeric>=.9){const nums=strings.map(finiteNumber).filter((value):value is number=>value!==undefined);if(numeric===1&&ratio>.9&&indexName(name)&&sequential(nums))return 'identifier';if(ratio>.96&&present.length>20&&identifierName(name))return 'identifier';return 'numeric'}
  if(identifierName(name))return 'identifier';
  const dates=strings.filter(v=>/^(?:\d{4}[-/]\d{1,2}[-/]\d{1,2}|\d{1,2}[-/]\d{1,2}[-/]\d{2,4})(?:[ T].*)?$/.test(v)&&!Number.isNaN(Date.parse(v))).length/present.length;
  if(dates>.9)return 'date';

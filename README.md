@@ -6,6 +6,8 @@ MarketLens is a client-side data exploration portfolio project built by Marcelin
 
 Scatter plots label both selected fields, and histograms label the analyzed field and frequency axis. If a file contains identifiers only, MarketLens preserves its summary and preview while explaining which business fields are needed before analysis can be generated.
 
+Numeric inference considers non-empty cells and requires at least 90% of them to be valid numeric values. Invalid cells in a mostly numeric column are treated as missing, never zero, while identifier and date protections remain in effect.
+
 ## Why I Simplified the Product
 
 The first version of MarketLens tried to force uploaded datasets into predefined marketing concepts such as campaigns, funnels, and RFM segments. Testing the application with the UCI Bank Marketing dataset revealed that this approach could produce misleading field mappings and analyses.
@@ -34,7 +36,7 @@ npm test
 npm run build
 ```
 
-Deterministic QA fixtures are documented in [`test-data/README.md`](test-data/README.md). Regenerate all 16 fictional CSV/XLSX fixtures with:
+Deterministic QA fixtures are documented in [`test-data/README.md`](test-data/README.md). Regenerate all fictional CSV/XLSX fixtures with:
 
 ```bash
 node test-data/generate-fixtures.mjs
