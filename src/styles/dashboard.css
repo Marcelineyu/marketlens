@@ -1,0 +1,261 @@
+.summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  background: linear-gradient(135deg, var(--surface-2), var(--surface));
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 34px 38px;
+  box-shadow: var(--shadow);
+  animation: rise-in 0.36s ease both;
+}
+
+.summary h1 {
+  font-size: 34px;
+}
+
+.summary p {
+  color: var(--text-2);
+  margin: 8px 0 0;
+}
+
+.summary .eyebrow {
+  color: var(--teal);
+}
+
+.stats {
+  display: flex;
+  gap: 14px;
+}
+
+.stats div {
+  min-width: 92px;
+  display: flex;
+  flex-direction: column;
+  padding: 13px 15px;
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  background: rgba(9, 14, 26, 0.34);
+}
+
+.stats b {
+  font: 700 26px Manrope;
+  color: var(--text);
+}
+
+.stats span {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.charts,
+.builder,
+.data-section {
+  margin-top: 72px;
+}
+
+.observations {
+  margin-top: 72px;
+}
+
+.section-title {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  margin-bottom: 22px;
+  padding-bottom: 17px;
+  border-bottom: 1px solid var(--border);
+}
+
+.section-title h2,
+.observations h2 {
+  font-size: 31px;
+}
+
+.section-title p {
+  max-width: 450px;
+  color: var(--text-2);
+  margin: 0;
+  line-height: 1.55;
+}
+
+.chart-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.chart-card {
+  min-width: 0;
+  background: linear-gradient(150deg, rgba(24, 35, 58, 0.96), rgba(18, 27, 46, 0.98));
+  border: 1px solid var(--border);
+  border-radius: 17px;
+  padding: 22px;
+  box-shadow: var(--shadow-soft);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  animation: rise-in 0.34s ease both;
+}
+
+.chart-card:nth-child(2) {
+  animation-delay: 0.04s;
+}
+
+.chart-card:nth-child(3) {
+  animation-delay: 0.08s;
+}
+
+.chart-card:nth-child(4) {
+  animation-delay: 0.12s;
+}
+
+.chart-card:nth-child(5) {
+  animation-delay: 0.16s;
+}
+
+.chart-card:nth-child(6) {
+  animation-delay: 0.2s;
+}
+
+.chart-card:hover {
+  border-color: rgba(124, 140, 255, 0.3);
+  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.28);
+  transform: translateY(-1px);
+}
+
+.chart-card.featured {
+  grid-column: span 2;
+}
+
+.card-head {
+  display: flex;
+  justify-content: space-between;
+  min-height: 54px;
+}
+
+.card-head h3 {
+  font: 700 17px Manrope;
+  margin: 0;
+  color: var(--text);
+}
+
+.card-head p {
+  margin: 5px 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.chart-area {
+  height: 306px;
+  margin-top: 12px;
+}
+
+.featured .chart-area {
+  height: 366px;
+}
+
+.chart-card .recharts-text {
+  fill: var(--text-2);
+}
+
+.chart-card .recharts-cartesian-grid line {
+  stroke: rgba(148, 163, 184, 0.14);
+}
+
+.chart-card .recharts-default-tooltip {
+  background: rgba(13, 20, 36, 0.96) !important;
+  border: 1px solid var(--border-strong) !important;
+  border-radius: 10px !important;
+  box-shadow: var(--shadow-soft);
+  color: var(--text) !important;
+}
+
+.chart-card .recharts-tooltip-label {
+  color: var(--text-2) !important;
+}
+
+.chart-note {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 10px 0 0;
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+}
+
+.observations {
+  background: linear-gradient(145deg, rgba(31, 42, 67, 0.94), rgba(20, 31, 52, 0.96));
+  border: 1px solid var(--border);
+  border-radius: 21px;
+  padding: 34px 38px;
+  box-shadow: var(--shadow-soft);
+  animation: rise-in 0.36s 0.08s ease both;
+}
+
+.observations > div {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 11px;
+  margin: 24px 0;
+}
+
+.observations article {
+  background: rgba(9, 14, 26, 0.42);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  border-radius: 13px;
+  padding: 18px;
+  display: flex;
+  gap: 14px;
+}
+
+.observations article span {
+  color: var(--teal);
+  font-weight: 800;
+}
+
+.observations article p {
+  margin: 0;
+  line-height: 1.55;
+  color: var(--text-2);
+}
+
+.observations small {
+  color: var(--muted);
+}
+
+.builder {
+  background: linear-gradient(145deg, #151f35, #10192b);
+  border: 1px solid rgba(124, 140, 255, 0.25);
+  border-radius: 21px;
+  padding: 34px 38px;
+  box-shadow: var(--shadow);
+}
+
+.builder .section-title {
+  margin-top: 0;
+}
+
+.builder .section-title p {
+  color: var(--text-2);
+}
+
+.builder-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr) auto;
+  gap: 12px;
+  align-items: end;
+}
+
+.builder label {
+  color: var(--text-2);
+}
+
+.builder .validation {
+  margin: 15px 0;
+}
+
+.builder-preview {
+  margin-top: 20px;
+}
+
+.builder-preview > .secondary {
+  margin-top: 12px;
+}

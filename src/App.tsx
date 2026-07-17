@@ -1,44 +1,108 @@
-import { ChangeEvent,DragEvent,useEffect,useMemo,useState } from 'react';
-import ChartCard from './components/ChartCard';import { campaignSample,ecommerceSample,bankSample } from './data/samples';import { Dataset,FilterState,Row,ChartSpec,ColumnType,Aggregation } from './types';import { isIdentifierOnlyDataset,profileRows } from './analytics/typeDetection';import { summarize } from './analytics/dataSummary';import { suggestCharts } from './analytics/chartSuggestions';import { applyFilters,categoryFilterValue,MISSING_FILTER_VALUE } from './analytics/filters';import { insights } from './analytics/insights';import { parseFile } from './utils/fileParsing';import { downloadCsv } from './utils/csvExport';
-import { builderUsesAggregation,builderUsesY,chartBuilderError,validBuilderX } from './analytics/chartValidation';
-const fmt=(n:number)=>n.toLocaleString();
-const UploadIcon=()=> <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5M5 15v4h14v-4"/></svg>;
-const ArrowIcon=()=> <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg>;
-const ChevronIcon=({down=false}:{down?:boolean})=> <svg viewBox="0 0 24 24" aria-hidden="true"><path d={down?'m6 9 6 6 6-6':'m6 15 6-6 6 6'}/></svg>;
-function makeDataset(name:string,rows:Row[]):Dataset{return{name,rows,originalRows:rows,profiles:profileRows(rows)}}
-function PreviewTable({rows,columns}:{rows:Row[];columns:string[]}){return <div className="table-wrap"><table><thead><tr>{columns.map(c=><th key={c}>{c}</th>)}</tr></thead><tbody>{rows.slice(0,20).map((r,i)=><tr key={i}>{columns.map(c=><td key={c}>{String(r[c]??'')}</td>)}</tr>)}</tbody></table></div>}
-function Header({onReset,dataset}:{onReset?:()=>void;dataset?:string}){const [scrolled,setScrolled]=useState(false);useEffect(()=>{const update=()=>setScrolled(window.scrollY>16);update();window.addEventListener('scroll',update,{passive:true});return()=>window.removeEventListener('scroll',update)},[]);return <header className={`app-header ${scrolled?'scrolled':''}`}><div className="header-inner"><button className="brand" onClick={onReset} aria-label="MarketLens home"><span>ML</span><b>MarketLens</b></button>{dataset&&<div className="dataset-status"><span>Current dataset</span><strong title={dataset}>{dataset}</strong></div>}{onReset&&<button className="new-dataset" onClick={onReset}><UploadIcon/><span>Upload New Dataset</span></button>}</div></header>}
-function ScrollNav(){const [position,setPosition]=useState({top:true,bottom:false});useEffect(()=>{const update=()=>setPosition({top:window.scrollY<24,bottom:window.scrollY+window.innerHeight>=document.documentElement.scrollHeight-24});update();window.addEventListener('scroll',update,{passive:true});window.addEventListener('resize',update);return()=>{window.removeEventListener('scroll',update);window.removeEventListener('resize',update)}},[]);return <nav className="scroll-nav" aria-label="Page navigation"><button aria-label="Back to top" title="Back to top" disabled={position.top} onClick={()=>window.scrollTo({top:0,behavior:'smooth'})}><ChevronIcon/></button><button aria-label="Jump to bottom" title="Jump to bottom" disabled={position.bottom} onClick={()=>window.scrollTo({top:document.documentElement.scrollHeight,behavior:'smooth'})}><ChevronIcon down/></button></nav>}
-function Upload({onLoad}:{onLoad:(d:Dataset)=>void}){const [error,setError]=useState('');const [loading,setLoading]=useState(false);const load=async(f?:File)=>{if(!f)return;setLoading(true);setError('');try{onLoad(makeDataset(f.name,await parseFile(f)))}catch(e){setError((e as Error).message)}finally{setLoading(false)}};const samples=[['Campaign Dataset',campaignSample],['Ecommerce Dataset',ecommerceSample],['Bank Marketing Dataset',bankSample]] as const;return <main className="start"><Header/><section className="hero"><div className="eyebrow">Private, browser-based analysis</div><h1>Turn your data into<br/><em>clear, beautiful insights</em></h1><p>Upload a CSV to automatically explore trends, relationships, distributions, and patterns directly in your browser.</p></section><label className={`drop ${loading?'loading':''}`} onDragOver={e=>e.preventDefault()} onDrop={(e:DragEvent)=>{e.preventDefault();load(e.dataTransfer.files[0])}}><input aria-label="Upload CSV or Excel" type="file" accept=".csv,.xlsx,.xls" onChange={(e:ChangeEvent<HTMLInputElement>)=>load(e.target.files?.[0])}/><div className="upload-icon"><UploadIcon/></div><strong aria-live="polite">{loading?'Reading your data…':'Drop a CSV or Excel file here'}</strong><span>or click to browse · up to 10 MB</span></label>{error&&<div role="alert" className="error">{error}</div>}<div className="samples"><span>Or start with a sample</span><div>{samples.map(([name,rows])=><button key={name} onClick={()=>onLoad(makeDataset(name,rows))}>{name}<ArrowIcon/></button>)}</div></div><p className="privacy"><span aria-hidden="true">●</span> Your data stays in this browser and is never uploaded.</p><div className="analysis-preview" aria-hidden="true"><div><span>Dataset overview</span><b>Profile every field</b></div><div><span>Automatic exploration</span><b>Reveal useful patterns</b></div><div><span>Evidence</span><b>Stay statistically honest</b></div></div></main>}
-function Summary({d,rows}:{d:Dataset;rows:Row[]}){const s=summarize(rows,d.profiles);return <section className="summary"><div><div className="eyebrow">Current dataset</div><h1>{d.name}</h1><p>{fmt(s.rows)} rows · {s.columns} columns · {s.missing} missing values · {s.duplicates} duplicate rows</p></div><div className="stats"><div><b>{s.numeric}</b><span>Numeric</span></div><div><b>{s.categorical}</b><span>Categorical</span></div><div><b>{s.date}</b><span>Date</span></div><div><b>{s.binary}</b><span>Binary</span></div></div></section>}
-function Filters({d,value,onChange}:{d:Dataset;value:FilterState;onChange:(v:FilterState)=>void}){const suitable=d.profiles.filter(p=>(p.type==='categorical'||p.type==='binary')&&p.unique<=15).slice(0,3);return <section className="filterbar"><div><strong>Filter this view</strong><span>{Object.keys(value).length?`${Object.keys(value).length} active`:'All records'}</span></div>{suitable.map(p=><label key={p.name}>{p.name}<select value={(value[p.name] as any)?.values?.[0]||''} onChange={e=>{const next={...value};if(e.target.value)next[p.name]={kind:'category',values:[e.target.value]};else delete next[p.name];onChange(next)}}><option value="">All</option>{Array.from(new Set(p.values.map(categoryFilterValue))).sort().map(v=><option key={v} value={v}>{v===MISSING_FILTER_VALUE?'Missing':v}</option>)}</select></label>)}<button className="ghost" onClick={()=>onChange({})} disabled={!Object.keys(value).length}>Reset filters</button></section>}
-function Profile({d,setD}:{d:Dataset;setD:(d:Dataset)=>void}){return <details className="details-card"><summary><span><b>Column profile</b><small>Types, completeness, and examples</small></span><b>⌄</b></summary><div className="table-wrap"><table><thead><tr><th>Column</th><th>Detected type</th><th>Missing</th><th>Unique</th><th>Examples</th></tr></thead><tbody>{d.profiles.map(p=><tr key={p.name}><td><b>{p.name}</b></td><td><select aria-label={`Type for ${p.name}`} value={p.type} onChange={e=>setD({...d,profiles:d.profiles.map(x=>x.name===p.name?{...x,type:e.target.value as ColumnType}:x)})}>{['numeric','categorical','date','binary','identifier','text'].map(t=><option key={t}>{t}</option>)}</select></td><td>{p.missing}</td><td>{p.unique}</td><td>{p.examples.join(', ')}</td></tr>)}</tbody></table></div></details>}
-function IdentifierOnly({d,setD,onReset}:{d:Dataset;setD:(d:Dataset)=>void;onReset:()=>void}){return <><Header onReset={onReset} dataset={d.name}/><ScrollNav/><main className="dashboard"><Summary d={d} rows={d.rows}/><section className="unsupported-state" aria-labelledby="identifier-only-title"><div className="empty-symbol"><span/><span/><span/></div><div className="eyebrow">Analysis unavailable</div><h2 id="identifier-only-title">No chartable business fields were found</h2><p>The file appears to contain identifiers only. Add a measurable field such as revenue, cost, quantity, score, date, region, category, or status to generate an analysis.</p><button className="primary" onClick={onReset}>Upload Another File</button></section><Profile d={d} setD={setD}/><details className="details-card" open><summary><span><b>Data preview</b><small>First 20 records</small></span><b>⌄</b></summary><PreviewTable rows={d.rows} columns={d.profiles.map(p=>p.name)}/></details></main></>}
-type BuilderSelection={kind:ChartSpec['kind'];x:string;y:string;agg:Aggregation};
-const numericAggregation=(name:string):Aggregation=>/(age|rate|ratio|percent|score|average|avg|price|balance)/i.test(name)?'average':'sum';
-function builderDefaults(profiles:Dataset['profiles']):BuilderSelection{const date=profiles.find(p=>p.type==='date');const nums=profiles.filter(p=>p.type==='numeric');if(date&&nums[0])return{kind:'line',x:date.name,y:nums[0].name,agg:numericAggregation(nums[0].name)};if(nums.length>1)return{kind:'scatter',x:nums[0].name,y:nums[1].name,agg:'average'};if(nums[0])return{kind:'histogram',x:nums[0].name,y:'',agg:'count'};const donut=profiles.find(p=>['categorical','binary'].includes(p.type)&&p.unique<=15);if(donut)return{kind:'donut',x:donut.name,y:'',agg:'count'};const x=profiles.find(p=>p.type!=='text')?.name||profiles[0]?.name||'';return{kind:'bar',x,y:'',agg:'count'}}
-function Builder({d,rows,onAdd}:{d:Dataset;rows:Row[];onAdd:(s:ChartSpec)=>void}){
- const defaults=useMemo(()=>builderDefaults(d.profiles),[]);
- const [kind,setKind]=useState<ChartSpec['kind']>(defaults.kind),[x,setX]=useState(defaults.x),[y,setY]=useState(defaults.y),[agg,setAgg]=useState<Aggregation>(defaults.agg),[interacted,setInteracted]=useState(false),[preview,setPreview]=useState<ChartSpec|null>(null);
- const xp=d.profiles.find(p=>p.name===x),yp=d.profiles.find(p=>p.name===y),usesY=builderUsesY(kind),usesAggregation=builderUsesAggregation(kind);
- const invalid=chartBuilderError(kind,xp,usesY?yp:undefined);
- const changeKind=(next:ChartSpec['kind'])=>{const currentX=d.profiles.find(p=>p.name===x),suggestedX=currentX&&validBuilderX(next,currentX)?currentX:d.profiles.find(p=>validBuilderX(next,p)),nextX=suggestedX?.name||x;setKind(next);setInteracted(true);if(suggestedX&&suggestedX.name!==x)setX(suggestedX.name);if(next==='line'||next==='scatter'){const currentY=d.profiles.find(p=>p.name===y);if(currentY?.type!=='numeric'||currentY.name===nextX)setY(d.profiles.find(p=>p.type==='numeric'&&p.name!==nextX)?.name||'')}if(next==='line'&&(agg==='count'||agg==='percentage')){const numeric=d.profiles.find(p=>p.type==='numeric'&&p.name!==nextX);setAgg(numericAggregation(numeric?.name||''))}};
- const aggregationOptions:Aggregation[]=kind==='line'?['sum','average','median','minimum','maximum']:['count','sum','average','median','minimum','maximum'];
- const spec=():ChartSpec=>({id:`custom-${Date.now()}`,title:kind==='scatter'?`${x} vs ${y}`:`${agg==='count'?'Records':y} by ${x}`,subtitle:`Custom ${kind} chart`,kind,x,y:usesY&&y?y:undefined,aggregation:usesAggregation?agg:undefined});
- const apply=()=>{setInteracted(true);if(!invalid)setPreview(spec())};
- return <section className="builder"><div className="section-title"><div><div className="eyebrow">Shape the story</div><h2>Build your own chart</h2></div><p>Choose fields and an aggregation. MarketLens will validate the combination before it renders.</p></div><div className="builder-grid"><label>Chart type<select value={kind} onChange={e=>changeKind(e.target.value as ChartSpec['kind'])}>{['bar','horizontal','line','donut','scatter','histogram'].map(option=><option key={option}>{option}</option>)}</select></label><label>X-axis<select value={x} onChange={e=>{setX(e.target.value);setInteracted(true)}}>{d.profiles.filter(p=>p.type!=='text').map(p=><option key={p.name} disabled={!validBuilderX(kind,p)||(usesY&&p.name===y)}>{p.name}</option>)}</select></label>{usesY&&<label>Y-axis<select value={y} onChange={e=>{setY(e.target.value);if(!e.target.value)setAgg('count');setInteracted(true)}}><option value="" disabled={kind==='line'||kind==='scatter'}>None</option>{d.profiles.filter(p=>p.type==='numeric').map(p=><option key={p.name} disabled={p.name===x}>{p.name}</option>)}</select></label>}{usesAggregation&&<label>Aggregation<select value={agg} onChange={e=>{setAgg(e.target.value as Aggregation);setInteracted(true)}}>{aggregationOptions.map(option=><option key={option} disabled={!y&&option!=='count'}>{option}</option>)}</select></label>}<button className="primary" disabled={!!invalid} aria-describedby={invalid&&interacted?'builder-validation':undefined} onClick={apply}>Apply</button></div>{invalid&&interacted&&<p id="builder-validation" role="alert" className="validation">{invalid}</p>}{preview&&<div className="builder-preview"><ChartCard rows={rows} spec={preview}/><button className="secondary" onClick={()=>onAdd(preview)}>+ Add to dashboard</button></div>}</section>
+import { useState } from 'react';
+import { applyFilters } from './analytics/filters';
+import { suggestCharts } from './analytics/chartSuggestions';
+import { isIdentifierOnlyDataset } from './analytics/typeDetection';
+import ChartBuilder from './components/charts/ChartBuilder';
+import ChartCard from './components/ChartCard';
+import DatasetFilters from './components/dashboard/DatasetFilters';
+import DatasetSummary from './components/dashboard/DatasetSummary';
+import IdentifierOnlyState from './components/dashboard/IdentifierOnlyState';
+import Observations from './components/dashboard/Observations';
+import OptionalCleaning from './components/dashboard/OptionalCleaning';
+import ColumnProfilePanel from './components/data/ColumnProfilePanel';
+import DataGrid from './components/data/DataGrid';
+import PreviewTable from './components/data/PreviewTable';
+import AppFooter from './components/layout/AppFooter';
+import AppHeader from './components/layout/AppHeader';
+import ScrollNavigation from './components/layout/ScrollNavigation';
+import UploadScreen from './components/upload/UploadScreen';
+import { ChartSpec, Dataset, FilterState } from './types';
+
+export default function App() {
+  const [dataset, setDataset] = useState<Dataset | null>(null);
+  const [filters, setFilters] = useState<FilterState>({});
+  const [customCharts, setCustomCharts] = useState<ChartSpec[]>([]);
+
+  if (!dataset) {
+    return <UploadScreen onLoad={setDataset} />;
+  }
+
+  const reset = () => {
+    setDataset(null);
+    setFilters({});
+    setCustomCharts([]);
+  };
+
+  if (isIdentifierOnlyDataset(dataset.profiles)) {
+    return (
+      <IdentifierOnlyState dataset={dataset} onDatasetChange={setDataset} onReset={reset} />
+    );
+  }
+
+  const filteredRows = applyFilters(dataset.rows, filters);
+  const charts = [...suggestCharts(dataset.profiles), ...customCharts];
+
+  const addCustomChart = (spec: ChartSpec) => {
+    setCustomCharts([...customCharts, { ...spec, id: `custom-${customCharts.length}` }]);
+  };
+
+  const removeCustomChart = (id: string) => {
+    setCustomCharts(customCharts.filter((chart) => chart.id !== id));
+  };
+
+  return (
+    <>
+      <AppHeader onReset={reset} dataset={dataset.name} />
+      <ScrollNavigation />
+      <main className="dashboard">
+        <DatasetSummary dataset={dataset} rows={filteredRows} />
+        <DatasetFilters dataset={dataset} value={filters} onChange={setFilters} />
+        <OptionalCleaning dataset={dataset} onDatasetChange={setDataset} />
+        <section className="charts">
+          <div className="section-title">
+            <div>
+              <div className="eyebrow">Automatic exploration</div>
+              <h2>Your data, in focus</h2>
+            </div>
+            <p>{charts.length} charts selected from the fields that actually exist.</p>
+          </div>
+          <div className="chart-grid">
+            {charts.map((spec) => (
+              <ChartCard
+                key={spec.id}
+                rows={filteredRows}
+                spec={spec}
+                onRemove={
+                  spec.id.startsWith('custom')
+                    ? () => removeCustomChart(spec.id)
+                    : undefined
+                }
+              />
+            ))}
+          </div>
+        </section>
+        <Observations rows={filteredRows} profiles={dataset.profiles} />
+        <ChartBuilder dataset={dataset} rows={filteredRows} onAdd={addCustomChart} />
+        <ColumnProfilePanel dataset={dataset} onDatasetChange={setDataset} />
+        <details className="details-card">
+          <summary>
+            <span>
+              <b>Data preview</b>
+              <small>First 20 filtered records</small>
+            </span>
+            <b>⌄</b>
+          </summary>
+          <PreviewTable
+            rows={filteredRows}
+            columns={dataset.profiles.map((profile) => profile.name)}
+          />
+        </details>
+        <DataGrid
+          rows={filteredRows}
+          columns={dataset.profiles.map((profile) => profile.name)}
+        />
+      </main>
+      <AppFooter />
+    </>
+  );
 }
-function DataGrid({rows,columns}:{rows:Row[];columns:string[]}){
- const [q,setQ]=useState(''),[page,setPage]=useState(0),[sort,setSort]=useState('');
- useEffect(()=>setPage(0),[rows.length]);
- const filtered=rows.filter(row=>!q||Object.values(row).some(value=>String(value).toLowerCase().includes(q.toLowerCase())));
- const sorted=sort?[...filtered].sort((a,b)=>String(a[sort]??'').localeCompare(String(b[sort]??''),undefined,{numeric:true})):filtered,shown=sorted.slice(page*20,page*20+20);
- return <section className="data-section"><div className="section-title"><div><div className="eyebrow">Explore the records</div><h2>Filtered data</h2></div><button className="secondary" onClick={()=>downloadCsv(filtered,'marketlens-filtered.csv')}>Export CSV</button></div><div className="table-tools"><input aria-label="Search data rows" placeholder="Search rows…" value={q} onChange={e=>{setQ(e.target.value);setPage(0)}}/><span>{fmt(filtered.length)} rows</span></div><div className="table-wrap"><table><thead><tr>{columns.map(column=><th key={column}><button onClick={()=>setSort(column)}>{column}{sort===column?' ↑':''}</button></th>)}</tr></thead><tbody>{shown.map((row,index)=><tr key={index}>{columns.map(column=><td key={column}>{String(row[column]??'')}</td>)}</tr>)}</tbody></table></div><div className="pager"><button disabled={!page} onClick={()=>setPage(page-1)}>Previous</button><span>Page {page+1} of {Math.max(1,Math.ceil(filtered.length/20))}</span><button disabled={(page+1)*20>=filtered.length} onClick={()=>setPage(page+1)}>Next</button></div></section>
-}
-export default function App(){
- const [d,setD]=useState<Dataset|null>(null);const [filters,setFilters]=useState<FilterState>({});const [custom,setCustom]=useState<ChartSpec[]>([]);
- if(!d)return <Upload onLoad={setD}/>;
- const reset=()=>{setD(null);setFilters({});setCustom([])};
- if(isIdentifierOnlyDataset(d.profiles))return <IdentifierOnly d={d} setD={setD} onReset={reset}/>;
- const rows=applyFilters(d.rows,filters);const charts=[...suggestCharts(d.profiles),...custom];const clean=(action:'duplicates'|'trim')=>{let r=d.rows;if(action==='duplicates')r=Array.from(new Map(r.map(x=>[JSON.stringify(x),x])).values());else r=r.map(x=>Object.fromEntries(Object.entries(x).map(([k,v])=>[k,typeof v==='string'?v.trim():v])));setD({...d,rows:r,profiles:profileRows(r)})};
- return <><Header onReset={reset} dataset={d.name}/><ScrollNav/><main className="dashboard"><Summary d={d} rows={rows}/><Filters d={d} value={filters} onChange={setFilters}/><section className="clean"><span><b>Optional cleaning</b> Changes are never applied silently.</span><button onClick={()=>clean('duplicates')}>Remove duplicates</button><button onClick={()=>clean('trim')}>Trim whitespace</button><button onClick={()=>setD(makeDataset(d.name,d.originalRows))}>Reset data</button></section><section className="charts"><div className="section-title"><div><div className="eyebrow">Automatic exploration</div><h2>Your data, in focus</h2></div><p>{charts.length} charts selected from the fields that actually exist.</p></div><div className="chart-grid">{charts.map(s=><ChartCard key={s.id} rows={rows} spec={s} onRemove={s.id.startsWith('custom')?()=>setCustom(custom.filter(x=>x.id!==s.id)):undefined}/>)}</div></section><section className="observations"><div className="eyebrow">Evidence, carefully stated</div><h2>Key observations</h2><div>{insights(rows,d.profiles).map((x,i)=><article key={x}><span>0{i+1}</span><p>{x}</p></article>)}</div><small>These are descriptive associations from the filtered dataset. They do not establish causation.</small></section><Builder d={d} rows={rows} onAdd={s=>setCustom([...custom,{...s,id:`custom-${custom.length}`}])}/><Profile d={d} setD={setD}/><details className="details-card"><summary><span><b>Data preview</b><small>First 20 filtered records</small></span><b>⌄</b></summary><PreviewTable rows={rows} columns={d.profiles.map(p=>p.name)}/></details><DataGrid rows={rows} columns={d.profiles.map(p=>p.name)}/></main><footer><span>MarketLens by Marceline Yu</span><nav aria-label="Portfolio links"><a href="https://github.com/Marcelineyu" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://github.com/Marcelineyu/marketlens" target="_blank" rel="noopener noreferrer">Repository</a><a href="https://www.linkedin.com/in/marcelineyu/" target="_blank" rel="noopener noreferrer">LinkedIn</a></nav></footer></>}

@@ -13,7 +13,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "verify:fixtures": "node scripts/verify-fixtures.mjs"
   },
   "dependencies": {
     "@vitejs/plugin-react": "6.0.3",

@@ -1,0 +1,299 @@
+@media (max-width: 1320px) {
+  .scroll-nav {
+    left: 4px;
+  }
+
+  .scroll-nav button {
+    width: 36px;
+    height: 36px;
+  }
+
+  .dashboard {
+    padding-left: 48px;
+    padding-right: 28px;
+  }
+}
+
+@media (max-width: 800px) {
+  .app-header {
+    height: 62px;
+  }
+
+  .header-inner {
+    padding: 0 16px;
+    gap: 11px;
+  }
+
+  .brand b {
+    display: none;
+  }
+
+  .brand > span {
+    width: 32px;
+    height: 32px;
+  }
+
+  .dataset-status {
+    margin-left: 0;
+    flex: 1;
+    display: block;
+    min-width: 0;
+  }
+
+  .dataset-status span {
+    display: none;
+  }
+
+  .dataset-status strong {
+    display: block;
+    max-width: 100%;
+    font-size: 11px;
+  }
+
+  .new-dataset {
+    padding: 9px 11px;
+    min-height: 40px;
+  }
+
+  .new-dataset span {
+    font-size: 0;
+  }
+
+  .new-dataset span:after {
+    content: 'Upload';
+    font-size: 12px;
+  }
+
+  .new-dataset svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .scroll-nav {
+    left: auto;
+    right: 16px;
+    top: auto;
+    bottom: 84px;
+    transform: none;
+    flex-direction: row;
+    gap: 7px;
+    padding: 5px;
+    border-radius: 16px;
+  }
+
+  .scroll-nav button {
+    width: 42px;
+    height: 42px;
+  }
+
+  .dashboard {
+    padding: 26px 16px 108px;
+  }
+
+  .summary {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 24px;
+    padding: 27px 22px;
+  }
+
+  .summary h1 {
+    font-size: 29px;
+  }
+
+  .stats {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 7px;
+  }
+
+  .stats div {
+    min-width: 0;
+    padding: 11px 8px;
+  }
+
+  .stats b {
+    font-size: 21px;
+  }
+
+  .stats span {
+    font-size: 9px;
+  }
+
+  .filterbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .clean {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .clean span {
+    width: 100%;
+  }
+
+  .charts,
+  .builder,
+  .data-section,
+  .observations {
+    margin-top: 58px;
+  }
+
+  .chart-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .chart-card.featured {
+    grid-column: auto;
+  }
+
+  .chart-area,
+  .featured .chart-area {
+    height: 306px;
+  }
+
+  .chart-card {
+    padding: 18px;
+  }
+
+  .section-title {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .section-title h2,
+  .observations h2 {
+    font-size: 27px;
+  }
+
+  .observations {
+    padding: 28px 20px;
+  }
+
+  .observations > div {
+    grid-template-columns: 1fr;
+  }
+
+  .builder {
+    padding: 28px 20px;
+  }
+
+  .builder-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .builder-grid .primary {
+    grid-column: span 2;
+  }
+
+  .samples > div,
+  .analysis-preview {
+    grid-template-columns: 1fr;
+  }
+
+  .analysis-preview {
+    display: none;
+  }
+
+  .hero {
+    margin-top: 44px;
+  }
+
+  .hero h1 {
+    font-size: clamp(39px, 12vw, 54px);
+  }
+
+  .hero > p {
+    font-size: 16px;
+  }
+
+  .drop {
+    margin: 0 16px;
+    height: 210px;
+  }
+
+  .stats b {
+    font-size: 22px;
+  }
+
+  .unsupported-state {
+    margin-top: 30px;
+    padding: 31px 20px;
+  }
+
+  .unsupported-state h2 {
+    font-size: 25px;
+  }
+
+  .data-section {
+    padding: 18px;
+  }
+
+  .table-tools {
+    gap: 12px;
+  }
+
+  .table-tools input {
+    min-width: 0;
+    width: 100%;
+  }
+
+  footer {
+    flex-direction: column;
+    gap: 8px;
+    padding-bottom: 90px;
+  }
+}
+
+@media (max-width: 430px) {
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .builder-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .builder-grid .primary {
+    grid-column: auto;
+  }
+
+  .hero {
+    padding: 0 16px;
+  }
+
+  .samples {
+    padding: 0 16px;
+  }
+
+  .scroll-nav {
+    right: 12px;
+    bottom: 76px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *:before,
+  *:after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .chart-card:hover,
+  .drop:hover,
+  .samples button:hover,
+  .new-dataset:hover {
+    transform: none;
+  }
+}
