@@ -1,4 +1,5 @@
 import { ColumnProfile, ColumnType, Dataset } from '../../types';
+import { typeUiLabel } from '../../utils/typeLabels';
 
 interface ColumnProfilePanelProps {
   dataset: Dataset;
@@ -72,7 +73,7 @@ export default function ColumnProfilePanel({ dataset, onDatasetChange }: ColumnP
               const numericFlags = formatNumericFlags(profile);
 
               return (
-                <tr key={profile.name}>
+                <tr key={profile.name} id={`column-profile-${encodeURIComponent(profile.name)}`}>
                   <td>
                     <b>{profile.name}</b>
                   </td>
@@ -85,7 +86,9 @@ export default function ColumnProfilePanel({ dataset, onDatasetChange }: ColumnP
                       }
                     >
                       {TYPE_OPTIONS.map((type) => (
-                        <option key={type}>{type}</option>
+                        <option key={type} value={type}>
+                          {typeUiLabel(type)}
+                        </option>
                       ))}
                     </select>
                   </td>

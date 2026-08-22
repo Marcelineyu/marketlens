@@ -144,6 +144,255 @@
   color: var(--text-2);
   margin-top: 48px;
 }
+
+.health-checklist {
+  margin-top: 28px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: rgba(18, 27, 46, 0.9);
+  padding: 22px 24px;
+}
+
+.health-header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.health-header b {
+  color: var(--text);
+  font-size: 16px;
+}
+
+.health-header span {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.health-items {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.health-item {
+  padding: 14px 16px;
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  border-radius: 12px;
+  background: rgba(9, 14, 26, 0.35);
+}
+
+.health-item > p {
+  margin: 0;
+  color: var(--text-2);
+  line-height: 1.55;
+}
+
+.health-copy {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.health-copy > p {
+  margin: 0;
+  color: var(--text-2);
+  line-height: 1.55;
+}
+
+.health-more {
+  display: inline;
+}
+
+.health-more summary {
+  display: inline;
+  cursor: pointer;
+  color: var(--teal);
+  font-size: inherit;
+  list-style: none;
+}
+
+.health-more summary::-webkit-details-marker {
+  display: none;
+}
+
+.health-more p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.dataset-notices {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dataset-notices p {
+  margin: 0;
+  padding: 12px 16px;
+  border: 1px solid rgba(216, 170, 98, 0.28);
+  border-radius: 12px;
+  background: rgba(216, 170, 98, 0.08);
+  color: var(--text-2);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.export-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.outlier-note {
+  color: #d8aa62;
+}
+
+.health-why {
+  margin-top: 10px;
+}
+
+.health-why summary {
+  cursor: pointer;
+  color: var(--teal);
+  font-size: 12px;
+}
+
+.health-why p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.health-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.health-actions button {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(124, 140, 255, 0.08);
+  color: #bdc5ff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 7px 12px;
+}
+
+.health-actions button:hover {
+  background: rgba(124, 140, 255, 0.16);
+}
+
+.health-ignore {
+  color: var(--muted) !important;
+  background: transparent !important;
+}
+
+.health-preview {
+  margin-top: 16px;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: rgba(9, 14, 26, 0.45);
+}
+
+.health-preview-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.health-preview ul {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--text-2);
+  font-size: 13px;
+}
+
+.cleaning-log-bar {
+  max-width: 1240px;
+  margin: 14px auto 0;
+  padding: 12px 28px;
+  border: 1px solid rgba(88, 215, 198, 0.28);
+  border-radius: 12px;
+  background: rgba(88, 215, 198, 0.08);
+  color: var(--text);
+  font-size: 13px;
+}
+
+.cleaning-log-bar .link-button {
+  border: 0;
+  background: transparent;
+  color: var(--teal);
+  font: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.cleaning-log-panel {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(148, 163, 184, 0.14);
+}
+
+.cleaning-log-panel ul {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cleaning-log-panel li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.cleaning-log-panel li div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cleaning-log-panel li span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.cleaning-log-panel li button {
+  flex-shrink: 0;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: transparent;
+  color: #bdc5ff;
+  font-size: 12px;
+  padding: 6px 10px;
+}
+
+.visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
 .section-title {
   display: flex;
   align-items: end;

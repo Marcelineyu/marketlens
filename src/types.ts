@@ -55,6 +55,17 @@ export interface DatasetProfileSummary {
   };
 }
 
+export interface CleaningStep {
+  id: string;
+  type: 'remove-duplicates' | 'merge-values';
+  summary: string;
+  detail: string;
+  affectedCount: number;
+  columnName?: string;
+  rowsBefore: Row[];
+  rowsAfter: Row[];
+}
+
 export interface Dataset {
   name: string;
   rows: Row[];
@@ -62,6 +73,7 @@ export interface Dataset {
   profiles: ColumnProfile[];
   profile: DatasetProfileSummary;
   cleaningMessage?: string;
+  cleaningSteps?: CleaningStep[];
 }
 
 export interface FilterState {

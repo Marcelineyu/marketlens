@@ -9,7 +9,8 @@ import DatasetFilters from './components/dashboard/DatasetFilters';
 import DatasetSummary from './components/dashboard/DatasetSummary';
 import IdentifierOnlyState from './components/dashboard/IdentifierOnlyState';
 import Observations from './components/dashboard/Observations';
-import OptionalCleaning from './components/dashboard/OptionalCleaning';
+import DataHealthChecklist from './components/dashboard/DataHealthChecklist';
+import CleaningChangeLog from './components/dashboard/CleaningChangeLog';
 import SampleDatasetBar from './components/dashboard/SampleDatasetBar';
 import ColumnProfilePanel from './components/data/ColumnProfilePanel';
 import DataGrid from './components/data/DataGrid';
@@ -29,6 +30,7 @@ export default function App() {
   const [customCharts, setCustomCharts] = useState<ChartSpec[]>([]);
   const [viewingSample, setViewingSample] = useState(false);
   const [sampleBarDismissed, setSampleBarDismissed] = useState(false);
+  const [ignoredChecklistIds, setIgnoredChecklistIds] = useState<Set<string>>(() => new Set());
   const [bootstrapping, setBootstrapping] = useState(import.meta.env.MODE !== 'test');
 
   useEffect(() => {
@@ -78,6 +80,7 @@ export default function App() {
     setCustomCharts([]);
     setViewingSample(false);
     setSampleBarDismissed(false);
+    setIgnoredChecklistIds(new Set());
     setBootstrapping(false);
   };
 
@@ -87,11 +90,16 @@ export default function App() {
     setCustomCharts([]);
     setViewingSample(false);
     setSampleBarDismissed(true);
+    setIgnoredChecklistIds(new Set());
+  };
+
+  const handleDatasetChange = (nextDataset: Dataset) => {
+    setDataset(nextDataset);
   };
 
   if (isIdentifierOnlyDataset(dataset.profiles)) {
     return (
-      <IdentifierOnlyState dataset={dataset} onDatasetChange={setDataset} onReset={reset} />
+      <IdentifierOnlyState dataset={dataset} onDatasetChange={handleDatasetChange} onReset={reset} />
     );
   }
 
@@ -121,10 +129,18 @@ export default function App() {
         />
       )}
       <ScrollNavigation />
+      <CleaningChangeLog dataset={dataset} onDatasetChange={handleDatasetChange} />
       <main className="dashboard">
         <DatasetSummary dataset={dataset} />
         <DatasetFilters dataset={dataset} value={filters} onChange={setFilters} />
-        <OptionalCleaning dataset={dataset} onDatasetChange={setDataset} />
+        <DataHealthChecklist
+          dataset={dataset}
+          ignoredItemIds={ignoredChecklistIds}
+          onDatasetChange={handleDatasetChange}
+          onIgnoreItem={(itemId) =>
+            setIgnoredChecklistIds((current) => new Set([...current, itemId]))
+          }
+        />
         <Observations
           rows={analysis.rows}
           profiles={analysis.profiles}
@@ -159,7 +175,7 @@ export default function App() {
           </div>
         </section>
         <ChartBuilder dataset={dataset} rows={filteredRows} onAdd={addCustomChart} />
-        <ColumnProfilePanel dataset={dataset} onDatasetChange={setDataset} />
+        <ColumnProfilePanel dataset={dataset} onDatasetChange={handleDatasetChange} />
         <details className="details-card">
           <summary>
             <span>
