@@ -4,9 +4,20 @@ import { insights } from '../../analytics/insights';
 interface ObservationsProps {
   rows: Row[];
   profiles: ColumnProfile[];
+  scopeLabel: string;
 }
 
-export default function Observations({ rows, profiles }: ObservationsProps) {
+function withScope(text: string, scopeLabel: string): string {
+  if (text.startsWith('No observations are available')) {
+    return `${text.slice(0, -1)} (${scopeLabel}).`;
+  }
+  if (text.endsWith('.')) {
+    return `${text.slice(0, -1)} (${scopeLabel}).`;
+  }
+  return `${text} (${scopeLabel})`;
+}
+
+export default function Observations({ rows, profiles, scopeLabel }: ObservationsProps) {
   const observations = insights(rows, profiles);
 
   return (
@@ -17,12 +28,12 @@ export default function Observations({ rows, profiles }: ObservationsProps) {
         {observations.map((text, index) => (
           <article key={text}>
             <span>0{index + 1}</span>
-            <p>{text}</p>
+            <p>{withScope(text, scopeLabel)}</p>
           </article>
         ))}
       </div>
       <small>
-        These are descriptive associations from the filtered dataset. They do not establish
+        These are descriptive associations from the current row set. They do not establish
         causation.
       </small>
     </section>

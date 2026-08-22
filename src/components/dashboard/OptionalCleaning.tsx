@@ -1,4 +1,4 @@
-import { Dataset } from '../../types';
+﻿import { Dataset } from '../../types';
 import { makeDataset, refreshDatasetRows } from '../../utils/dataset';
 
 interface OptionalCleaningProps {

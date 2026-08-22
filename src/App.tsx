@@ -1,14 +1,16 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { applyFilters } from './analytics/filters';
 import { suggestCharts } from './analytics/chartSuggestions';
 import { isIdentifierOnlyDataset } from './analytics/typeDetection';
 import ChartBuilder from './components/charts/ChartBuilder';
 import ChartCard from './components/ChartCard';
+import DataQualityCaveat from './components/dashboard/DataQualityCaveat';
 import DatasetFilters from './components/dashboard/DatasetFilters';
 import DatasetSummary from './components/dashboard/DatasetSummary';
 import IdentifierOnlyState from './components/dashboard/IdentifierOnlyState';
 import Observations from './components/dashboard/Observations';
 import OptionalCleaning from './components/dashboard/OptionalCleaning';
+import SampleDatasetBar from './components/dashboard/SampleDatasetBar';
 import ColumnProfilePanel from './components/data/ColumnProfilePanel';
 import DataGrid from './components/data/DataGrid';
 import PreviewTable from './components/data/PreviewTable';
@@ -17,20 +19,74 @@ import AppHeader from './components/layout/AppHeader';
 import ScrollNavigation from './components/layout/ScrollNavigation';
 import UploadScreen from './components/upload/UploadScreen';
 import { ChartSpec, Dataset, FilterState } from './types';
+import { applyChartConclusions } from './utils/chartConclusions';
+import { getAnalysisContext } from './utils/analysisScope';
+import { isSampleDatasetName, loadDefaultSample } from './utils/sampleDataset';
 
 export default function App() {
   const [dataset, setDataset] = useState<Dataset | null>(null);
   const [filters, setFilters] = useState<FilterState>({});
   const [customCharts, setCustomCharts] = useState<ChartSpec[]>([]);
+  const [viewingSample, setViewingSample] = useState(false);
+  const [sampleBarDismissed, setSampleBarDismissed] = useState(false);
+  const [bootstrapping, setBootstrapping] = useState(import.meta.env.MODE !== 'test');
+
+  useEffect(() => {
+    if (import.meta.env.MODE === 'test') {
+      return;
+    }
+
+    let cancelled = false;
+    loadDefaultSample()
+      .then((sample) => {
+        if (cancelled || !sample) return;
+        setDataset(sample);
+        setViewingSample(true);
+      })
+      .finally(() => {
+        if (!cancelled) setBootstrapping(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  if (bootstrapping && !dataset) {
+    return (
+      <main className="start">
+        <AppHeader />
+        <p className="bootstrapping-note">Loading sample dataset…</p>
+      </main>
+    );
+  }
 
   if (!dataset) {
-    return <UploadScreen onLoad={setDataset} />;
+    return (
+      <UploadScreen
+        onLoad={(nextDataset) => {
+          setDataset(nextDataset);
+          setViewingSample(isSampleDatasetName(nextDataset.name));
+          setSampleBarDismissed(false);
+        }}
+      />
+    );
   }
 
   const reset = () => {
     setDataset(null);
     setFilters({});
     setCustomCharts([]);
+    setViewingSample(false);
+    setSampleBarDismissed(false);
+    setBootstrapping(false);
+  };
+
+  const handleDatasetUpload = (nextDataset: Dataset) => {
+    setDataset(nextDataset);
+    setFilters({});
+    setCustomCharts([]);
+    setViewingSample(false);
+    setSampleBarDismissed(true);
   };
 
   if (isIdentifierOnlyDataset(dataset.profiles)) {
@@ -40,7 +96,12 @@ export default function App() {
   }
 
   const filteredRows = applyFilters(dataset.rows, filters);
-  const charts = [...suggestCharts(dataset.profiles), ...customCharts];
+  const analysis = getAnalysisContext(dataset, filteredRows, filters);
+  const charts = applyChartConclusions(
+    analysis.rows,
+    [...suggestCharts(analysis.profiles), ...customCharts],
+    analysis.profiles,
+  );
 
   const addCustomChart = (spec: ChartSpec) => {
     setCustomCharts([...customCharts, { ...spec, id: `custom-${customCharts.length}` }]);
@@ -53,11 +114,27 @@ export default function App() {
   return (
     <>
       <AppHeader onReset={reset} dataset={dataset.name} />
+      {viewingSample && !sampleBarDismissed && (
+        <SampleDatasetBar
+          onUpload={handleDatasetUpload}
+          onDismiss={() => setSampleBarDismissed(true)}
+        />
+      )}
       <ScrollNavigation />
       <main className="dashboard">
         <DatasetSummary dataset={dataset} />
         <DatasetFilters dataset={dataset} value={filters} onChange={setFilters} />
         <OptionalCleaning dataset={dataset} onDatasetChange={setDataset} />
+        <Observations
+          rows={analysis.rows}
+          profiles={analysis.profiles}
+          scopeLabel={analysis.scopeLabel}
+        />
+        <DataQualityCaveat
+          profile={analysis.profile}
+          profiles={analysis.profiles}
+          scopeLabel={analysis.scopeLabel}
+        />
         <section className="charts">
           <div className="section-title">
             <div>
@@ -70,7 +147,7 @@ export default function App() {
             {charts.map((spec) => (
               <ChartCard
                 key={spec.id}
-                rows={filteredRows}
+                rows={analysis.rows}
                 spec={spec}
                 onRemove={
                   spec.id.startsWith('custom')
@@ -81,7 +158,6 @@ export default function App() {
             ))}
           </div>
         </section>
-        <Observations rows={filteredRows} profiles={dataset.profiles} />
         <ChartBuilder dataset={dataset} rows={filteredRows} onAdd={addCustomChart} />
         <ColumnProfilePanel dataset={dataset} onDatasetChange={setDataset} />
         <details className="details-card">
