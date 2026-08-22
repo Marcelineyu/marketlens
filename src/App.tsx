@@ -11,6 +11,7 @@ import IdentifierOnlyState from './components/dashboard/IdentifierOnlyState';
 import Observations from './components/dashboard/Observations';
 import DataHealthChecklist from './components/dashboard/DataHealthChecklist';
 import CleaningChangeLog from './components/dashboard/CleaningChangeLog';
+import DatasetNotices from './components/dashboard/DatasetNotices';
 import SampleDatasetBar from './components/dashboard/SampleDatasetBar';
 import ColumnProfilePanel from './components/data/ColumnProfilePanel';
 import DataGrid from './components/data/DataGrid';
@@ -132,6 +133,7 @@ export default function App() {
       <CleaningChangeLog dataset={dataset} onDatasetChange={handleDatasetChange} />
       <main className="dashboard">
         <DatasetSummary dataset={dataset} />
+        <DatasetNotices dataset={dataset} />
         <DatasetFilters dataset={dataset} value={filters} onChange={setFilters} />
         <DataHealthChecklist
           dataset={dataset}
@@ -164,7 +166,9 @@ export default function App() {
               <ChartCard
                 key={spec.id}
                 rows={analysis.rows}
+                profiles={analysis.profiles}
                 spec={spec}
+                scopeLabel={analysis.scopeLabel}
                 onRemove={
                   spec.id.startsWith('custom')
                     ? () => removeCustomChart(spec.id)
@@ -192,6 +196,9 @@ export default function App() {
         <DataGrid
           rows={filteredRows}
           columns={dataset.profiles.map((profile) => profile.name)}
+          dataset={dataset}
+          scopeLabel={analysis.scopeLabel}
+          ignoredChecklistIds={ignoredChecklistIds}
         />
       </main>
       <AppFooter />

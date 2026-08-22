@@ -19,10 +19,14 @@ export default function AppHeader({ onReset, dataset }: AppHeaderProps) {
   return (
     <header className={`app-header ${scrolled ? 'scrolled' : ''}`}>
       <div className="header-inner">
-        <button className="brand" onClick={onReset} aria-label="MarketLens home">
-          <span>ML</span>
-          <b>MarketLens</b>
-        </button>
+        <div className="brand-block">
+          <button className="brand" onClick={onReset} aria-label="MarketLens home">
+            <span>ML</span>
+            <b>MarketLens</b>
+          </button>
+          <p className="brand-tagline">Turn a messy spreadsheet into conclusions you can trust.</p>
+          <p className="brand-privacy">Your file never leaves your browser.</p>
+        </div>
         {dataset && (
           <div className="dataset-status">
             <span>Current dataset</span>

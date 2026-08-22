@@ -1,14 +1,24 @@
 import { useEffect, useState } from 'react';
-import { Row } from '../../types';
+import { Dataset, Row } from '../../types';
 import { downloadCsv } from '../../utils/csvExport';
 import { formatNumber } from '../../utils/format';
+import { buildSummaryHtml, downloadSummaryHtml } from '../../utils/summaryExport';
 
 interface DataGridProps {
   rows: Row[];
   columns: string[];
+  dataset: Dataset;
+  scopeLabel: string;
+  ignoredChecklistIds: ReadonlySet<string>;
 }
 
-export default function DataGrid({ rows, columns }: DataGridProps) {
+export default function DataGrid({
+  rows,
+  columns,
+  dataset,
+  scopeLabel,
+  ignoredChecklistIds,
+}: DataGridProps) {
   const [query, setQuery] = useState('');
   const [page, setPage] = useState(0);
   const [sortColumn, setSortColumn] = useState('');
@@ -33,6 +43,7 @@ export default function DataGrid({ rows, columns }: DataGridProps) {
 
   const shown = sorted.slice(page * 20, page * 20 + 20);
   const totalPages = Math.max(1, Math.ceil(filtered.length / 20));
+  const hasCleaningSteps = Boolean(dataset.cleaningSteps?.length);
 
   return (
     <section className="data-section">
@@ -41,12 +52,30 @@ export default function DataGrid({ rows, columns }: DataGridProps) {
           <div className="eyebrow">Explore the records</div>
           <h2>Filtered data</h2>
         </div>
-        <button
-          className="secondary"
-          onClick={() => downloadCsv(filtered, 'marketlens-filtered.csv')}
-        >
-          Export CSV
-        </button>
+        <div className="export-actions">
+          <button className="secondary" onClick={() => downloadCsv(filtered, 'marketlens-filtered.csv')}>
+            Export CSV
+          </button>
+          {hasCleaningSteps && (
+            <button
+              className="secondary"
+              onClick={() => downloadCsv(dataset.rows, 'marketlens-cleaned.csv')}
+            >
+              Export cleaned CSV
+            </button>
+          )}
+          <button
+            className="secondary"
+            onClick={() =>
+              downloadSummaryHtml(
+                buildSummaryHtml(dataset, ignoredChecklistIds),
+                'marketlens-summary.html',
+              )
+            }
+          >
+            Export summary
+          </button>
+        </div>
       </div>
       <div className="table-tools">
         <input
@@ -58,7 +87,9 @@ export default function DataGrid({ rows, columns }: DataGridProps) {
             setPage(0);
           }}
         />
-        <span>{formatNumber(filtered.length)} rows</span>
+        <span>
+          {formatNumber(filtered.length)} rows ({scopeLabel})
+        </span>
       </div>
       <div className="table-wrap">
         <table>

@@ -1,4 +1,4 @@
-﻿.summary {
+.summary {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -393,6 +393,7 @@
   position: absolute;
   width: 1px;
 }
+
 .section-title {
   display: flex;
   align-items: end;

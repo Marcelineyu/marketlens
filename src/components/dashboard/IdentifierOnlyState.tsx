@@ -2,6 +2,7 @@ import { Dataset } from '../../types';
 import AppHeader from '../layout/AppHeader';
 import ScrollNavigation from '../layout/ScrollNavigation';
 import DatasetSummary from './DatasetSummary';
+import DatasetNotices from './DatasetNotices';
 import ColumnProfilePanel from '../data/ColumnProfilePanel';
 import PreviewTable from '../data/PreviewTable';
 
@@ -22,6 +23,7 @@ export default function IdentifierOnlyState({
       <ScrollNavigation />
       <main className="dashboard">
         <DatasetSummary dataset={dataset} />
+        <DatasetNotices dataset={dataset} />
         <section className="unsupported-state" aria-labelledby="identifier-only-title">
           <div className="empty-symbol">
             <span />

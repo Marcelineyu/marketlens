@@ -2,7 +2,7 @@
   position: sticky;
   top: 0;
   z-index: 30;
-  height: 68px;
+  min-height: 68px;
   border-bottom: 1px solid transparent;
   background: rgba(9, 14, 26, 0.68);
   backdrop-filter: blur(18px);
@@ -23,6 +23,28 @@
   display: flex;
   align-items: center;
   gap: 24px;
+}
+
+.brand-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  min-width: 0;
+}
+
+.brand-tagline,
+.brand-privacy {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.35;
+  color: var(--muted);
+  max-width: 320px;
+}
+
+.brand-privacy {
+  color: var(--teal);
+  font-size: 10px;
 }
 
 .brand {
