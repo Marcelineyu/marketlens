@@ -19,6 +19,12 @@
   margin: 8px 0 0;
 }
 
+.summary .cleaning-note {
+  margin-top: 10px;
+  color: var(--teal);
+  font-size: 13px;
+}
+
 .profile-note {
   display: block;
   color: var(--muted);

@@ -18,6 +18,11 @@ export default function DatasetSummary({ dataset }: DatasetSummaryProps) {
           {formatNumber(profile.rowCount)} rows · {dataset.profiles.length} columns ·{' '}
           {profile.missingValues} missing values · {profile.duplicateRows} duplicate rows
         </p>
+        {dataset.cleaningMessage && (
+          <p className="cleaning-note" role="status">
+            {dataset.cleaningMessage}
+          </p>
+        )}
       </div>
       <div className="stats">
         <div>

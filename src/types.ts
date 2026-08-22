@@ -61,6 +61,7 @@ export interface Dataset {
   originalRows: Row[];
   profiles: ColumnProfile[];
   profile: DatasetProfileSummary;
+  cleaningMessage?: string;
 }
 
 export interface FilterState {

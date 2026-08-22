@@ -11,3 +11,18 @@ export function makeDataset(name: string, rows: Row[]): Dataset {
     profile,
   };
 }
+
+export function refreshDatasetRows(
+  dataset: Dataset,
+  rows: Row[],
+  cleaningMessage?: string,
+): Dataset {
+  const { profiles, profile } = buildDatasetProfile(rows);
+  return {
+    ...dataset,
+    rows,
+    profiles,
+    profile,
+    cleaningMessage,
+  };
+}

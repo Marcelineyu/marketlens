@@ -1,6 +1,5 @@
-import { buildDatasetProfile } from '../../utils/datasetProfile';
 import { Dataset } from '../../types';
-import { makeDataset } from '../../utils/dataset';
+import { makeDataset, refreshDatasetRows } from '../../utils/dataset';
 
 interface OptionalCleaningProps {
   dataset: Dataset;
@@ -8,28 +7,32 @@ interface OptionalCleaningProps {
 }
 
 export default function OptionalCleaning({ dataset, onDatasetChange }: OptionalCleaningProps) {
-  const applyRows = (rows: Dataset['rows']) => {
-    const { profiles, profile } = buildDatasetProfile(rows);
-    onDatasetChange({ ...dataset, rows, profiles, profile });
-  };
-
   const clean = (action: 'duplicates' | 'trim') => {
     let rows = dataset.rows;
 
     if (action === 'duplicates') {
+      const beforeCount = rows.length;
       rows = Array.from(new Map(rows.map((row) => [JSON.stringify(row), row])).values());
-    } else {
-      rows = rows.map((row) =>
-        Object.fromEntries(
-          Object.entries(row).map(([key, value]) => [
-            key,
-            typeof value === 'string' ? value.trim() : value,
-          ]),
+      const removed = beforeCount - rows.length;
+      onDatasetChange(
+        refreshDatasetRows(
+          dataset,
+          rows,
+          removed > 0 ? `Removed ${removed} duplicate row(s).` : 'No duplicate rows were removed.',
         ),
       );
+      return;
     }
 
-    applyRows(rows);
+    rows = rows.map((row) =>
+      Object.fromEntries(
+        Object.entries(row).map(([key, value]) => [
+          key,
+          typeof value === 'string' ? value.trim() : value,
+        ]),
+      ),
+    );
+    onDatasetChange(refreshDatasetRows(dataset, rows));
   };
 
   return (
@@ -39,7 +42,11 @@ export default function OptionalCleaning({ dataset, onDatasetChange }: OptionalC
       </span>
       <button onClick={() => clean('duplicates')}>Remove duplicates</button>
       <button onClick={() => clean('trim')}>Trim whitespace</button>
-      <button onClick={() => onDatasetChange(makeDataset(dataset.name, dataset.originalRows))}>
+      <button
+        onClick={() =>
+          onDatasetChange({ ...makeDataset(dataset.name, dataset.originalRows), cleaningMessage: undefined })
+        }
+      >
         Reset data
       </button>
     </section>
