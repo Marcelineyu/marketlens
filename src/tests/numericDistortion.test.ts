@@ -19,17 +19,16 @@ const rows = Papa.parse(messyCsv, {
 }).data as Record<string, unknown>[];
 const { profiles } = buildDatasetProfile(rows);
 const weightProfile = profiles.find((profile) => profile.name === 'weight_kg')!;
-const scope = `based on all ${rows.length} rows`;
 
 it('uses the same row set for weight_kg checklist mean and caveat average', () => {
   const stats = numericDistortionStats(weightProfile)!;
-  const checklist = numericChecklistHeadline(weightProfile, scope)!;
-  const caveat = numericCaveatIssue(weightProfile, scope)!;
+  const checklist = numericChecklistHeadline(weightProfile)!;
+  const caveat = numericCaveatIssue(weightProfile)!;
 
   expect(stats.withMean).not.toBeNull();
   expect(stats.withoutMean).not.toBeNull();
-  expect(checklist).toContain(scope);
-  expect(caveat).toContain(scope);
+  expect(checklist).not.toContain('based on');
+  expect(caveat).not.toContain('based on');
   expect(checklist).toContain(String(stats.withMean!.toFixed(1)));
   expect(caveat).toContain(String(stats.withMean!.toFixed(1)));
   expect(caveat).toContain(String(stats.withoutMean!.toFixed(1)));

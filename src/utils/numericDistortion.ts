@@ -39,7 +39,7 @@ export function numericDistortionStats(profile: ColumnProfile): NumericDistortio
   };
 }
 
-export function numericChecklistHeadline(profile: ColumnProfile, scopeLabel: string): string | null {
+export function numericChecklistHeadline(profile: ColumnProfile): string | null {
   const stats = numericDistortionStats(profile);
   if (!stats) return null;
 
@@ -60,26 +60,26 @@ export function numericChecklistHeadline(profile: ColumnProfile, scopeLabel: str
 
   const distortion =
     stats.withMean !== null && stats.median !== null
-      ? ` (mean ${formatStat(stats.withMean)} vs median ${formatStat(stats.median)}, ${scopeLabel})`
-      : ` (${scopeLabel})`;
+      ? ` (mean ${formatStat(stats.withMean)} vs median ${formatStat(stats.median)})`
+      : '';
 
   return `${profile.name} has ${parts.join(' and ')} — distorts averages${distortion}`;
 }
 
-export function numericCaveatIssue(profile: ColumnProfile, scopeLabel: string): string | null {
+export function numericCaveatIssue(profile: ColumnProfile): string | null {
   const stats = numericDistortionStats(profile);
   if (!stats) return null;
 
   if (stats.outlierCount && stats.withMean !== null && stats.withoutMean !== null) {
     if (Math.abs(stats.withMean - stats.withoutMean) < 1) return null;
     const outlierLabel = stats.outlierCount === 1 ? '1 outlier' : `${stats.outlierCount} outliers`;
-    return `${profile.name} contains ${outlierLabel} that pull${stats.outlierCount === 1 ? 's' : ''} the average from ${formatStat(stats.withoutMean)} to ${formatStat(stats.withMean)} (${scopeLabel})`;
+    return `${profile.name} contains ${outlierLabel} that pull${stats.outlierCount === 1 ? 's' : ''} the average from ${formatStat(stats.withoutMean)} to ${formatStat(stats.withMean)}`;
   }
 
   if (stats.negativeCount) {
     const label =
       stats.negativeCount === 1 ? '1 negative value' : `${stats.negativeCount} negative values`;
-    return `${profile.name} contains ${label} (${scopeLabel})`;
+    return `${profile.name} contains ${label}`;
   }
 
   return null;

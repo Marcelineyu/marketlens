@@ -1,6 +1,6 @@
 import { Dataset } from '../types';
 import { formatAnalysisScope } from './analysisScope';
-import { buildDataHealthChecklist } from './dataHealthChecklist';
+import { buildDataHealthChecklist, formatChecklistExportLine } from './dataHealthChecklist';
 import { buildDataQualityCaveatText } from './dataQualityCaveat';
 import { buildDatasetLeadSentence } from './datasetLeadSentence';
 import { insights } from '../analytics/insights';
@@ -29,9 +29,9 @@ export function buildSummaryHtml(
     (text) => `${text} (${scopeLabel}).`,
   );
   const caveat = buildDataQualityCaveatText(dataset.profile, dataset.profiles, scopeLabel);
-  const checklist = buildDataHealthChecklist(dataset.profile, dataset.profiles, scopeLabel)
+  const checklist = buildDataHealthChecklist(dataset.profile, dataset.profiles)
     .filter((item) => !ignoredChecklistIds.has(item.id))
-    .map((item) => item.headline);
+    .map((item) => formatChecklistExportLine(item));
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -55,7 +55,7 @@ export function buildSummaryHtml(
   <ul>${observations.map((item) => `<li>${escapeHtml(item)}</li>`).join('') || '<li>No observations available.</li>'}</ul>
   <h2>Data quality caveat</h2>
   <p>${escapeHtml(caveat)}</p>
-  <h2>Checklist</h2>
+  <h2>Data health — ${escapeHtml(scopeLabel)}</h2>
   <ul>${checklist.map((item) => `<li>${escapeHtml(item)}</li>`).join('') || '<li>No open checklist items.</li>'}</ul>
 </body>
 </html>`;

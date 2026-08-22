@@ -30,7 +30,7 @@ function ChecklistRow({
   return (
     <article className="health-item">
       <div className="health-copy">
-        <p>{item.headline}</p>
+        <p>{item.headline}{item.scopeLabel ? ` (${item.scopeLabel})` : ''}</p>
         {item.moreGroupsText && moreCount > 0 && (
           <details className="health-more">
             <summary>and {moreCount} more</summary>
@@ -78,7 +78,7 @@ export default function DataHealthChecklist({
   const scopeLabel = formatAnalysisScope(dataset.rows.length, dataset, false);
   const items = useMemo(
     () =>
-      buildDataHealthChecklist(dataset.profile, dataset.profiles, scopeLabel).filter(
+      buildDataHealthChecklist(dataset.profile, dataset.profiles).filter(
         (item) => !ignoredItemIds.has(item.id),
       ),
     [dataset.profile, dataset.profiles, ignoredItemIds, scopeLabel],
@@ -155,8 +155,8 @@ export default function DataHealthChecklist({
     return (
       <section className="health-checklist">
         <div className="health-header">
-          <b>Data health checklist</b>
-          <span>All current issues are ignored or resolved ({scopeLabel}).</span>
+          <b>Data health — {scopeLabel}</b>
+          <span>All current issues are ignored or resolved.</span>
         </div>
       </section>
     );
@@ -165,8 +165,8 @@ export default function DataHealthChecklist({
   return (
     <section className="health-checklist">
       <div className="health-header">
-        <b>Data health checklist</b>
-        <span>Review issues before trusting charts and summaries ({scopeLabel}).</span>
+        <b>Data health — {scopeLabel}</b>
+        <span>Review issues before trusting charts and summaries.</span>
       </div>
       <div className="health-items">
         {items.map((item) => (

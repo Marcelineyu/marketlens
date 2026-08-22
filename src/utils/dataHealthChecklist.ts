@@ -9,6 +9,7 @@ export interface ChecklistItem {
   severity: number;
   headline: string;
   moreGroupsText?: string;
+  scopeLabel?: string;
   why: string;
   actions: ChecklistActionKind[];
   columnName?: string;
@@ -34,7 +35,6 @@ function valueGroupHeadline(columnName: string, groups: ValueGroup[]): Pick<Chec
 export function buildDataHealthChecklist(
   profile: DatasetProfileSummary,
   profiles: ColumnProfile[],
-  scopeLabel: string,
 ): ChecklistItem[] {
   const items: ChecklistItem[] = [];
 
@@ -46,7 +46,7 @@ export function buildDataHealthChecklist(
     items.push({
       id: 'duplicates',
       severity: 1,
-      headline: `${label} — inflates counts and totals (${scopeLabel})`,
+      headline: `${label} — inflates counts and totals`,
       why: 'Duplicate rows double-count the same information, so totals, averages, and category shares all look larger than they really are.',
       actions: ['remove-and-log', 'view', 'ignore'],
       viewTarget: 'duplicate-rows',
@@ -55,7 +55,7 @@ export function buildDataHealthChecklist(
 
   for (const column of profiles) {
     if (column.numericFlags?.negatives.length || column.numericFlags?.outliers.length) {
-      const headline = numericChecklistHeadline(column, scopeLabel);
+      const headline = numericChecklistHeadline(column);
       if (!headline) continue;
       items.push({
         id: `numeric-${column.name}`,
@@ -77,7 +77,7 @@ export function buildDataHealthChecklist(
     items.push({
       id: `value-groups-${column.name}`,
       severity: 3,
-      headline: `${groupCopy.headline} (${scopeLabel})`,
+      headline: groupCopy.headline,
       moreGroupsText: groupCopy.moreGroupsText,
       why: 'When the same category is spelled differently, charts treat it as separate categories and understate how common it really is.',
       actions: ['merge', 'view', 'ignore'],
@@ -91,7 +91,7 @@ export function buildDataHealthChecklist(
     items.push({
       id: `empty-${column.name}`,
       severity: 4,
-      headline: `${column.name} is entirely empty — excluded from charts (${scopeLabel})`,
+      headline: `${column.name} is entirely empty — excluded from charts`,
       why: 'Columns with no values cannot be summarized or charted, and they add noise to the field list without helping analysis.',
       actions: ['view', 'ignore'],
       columnName: column.name,
@@ -100,4 +100,15 @@ export function buildDataHealthChecklist(
   }
 
   return items.sort((a, b) => a.severity - b.severity);
+}
+
+export function formatChecklistExportLine(item: ChecklistItem): string {
+  let text = item.headline;
+  if (item.moreGroupsText) {
+    text = `${text}; ${item.moreGroupsText}`;
+  }
+  if (item.scopeLabel) {
+    text = `${text} (${item.scopeLabel})`;
+  }
+  return text;
 }

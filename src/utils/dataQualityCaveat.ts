@@ -10,8 +10,18 @@ function columnProfileAnchor(columnName: string): string {
   return `#column-profile-${encodeURIComponent(columnName)}`;
 }
 
-function numericIssueNotes(profile: ColumnProfile, scopeLabel: string): string | null {
-  return numericCaveatIssue(profile, scopeLabel);
+function numericIssueNotes(profile: ColumnProfile): string | null {
+  return numericCaveatIssue(profile);
+}
+
+function joinIssueTexts(issues: DataQualityIssue[]): string {
+  return issues
+    .map((issue, index) => {
+      if (index === 0) return issue.text;
+      if (index === issues.length - 1) return `, and ${issue.text}`;
+      return `, ${issue.text}`;
+    })
+    .join('');
 }
 
 export function buildDataQualityIssues(
@@ -26,11 +36,11 @@ export function buildDataQualityIssues(
       profile.duplicateRows === 1
         ? '1 row is an exact duplicate'
         : `${profile.duplicateRows} rows are exact duplicates`;
-    issues.push({ text: `${label} (${scopeLabel})` });
+    issues.push({ text: label });
   }
 
   for (const column of profiles) {
-    const numericNote = numericIssueNotes(column, scopeLabel);
+    const numericNote = numericIssueNotes(column);
     if (numericNote) {
       issues.push({ text: numericNote, columnName: column.name });
     }
@@ -38,7 +48,7 @@ export function buildDataQualityIssues(
 
   for (const column of profiles.filter((item) => item.type === 'empty')) {
     issues.push({
-      text: `${column.name} is completely empty (${scopeLabel})`,
+      text: `${column.name} is completely empty`,
       columnName: column.name,
     });
   }
@@ -55,7 +65,7 @@ export function buildDataQualityCaveatText(
   if (!issues.length) {
     return `No data quality issues detected (${scopeLabel}).`;
   }
-  return `Before you trust these numbers (${scopeLabel}): ${issues.map((issue) => issue.text).join(', and ')}.`;
+  return `Before you trust these numbers (${scopeLabel}): ${joinIssueTexts(issues)}.`;
 }
 
 export function columnProfileHref(columnName: string): string {
