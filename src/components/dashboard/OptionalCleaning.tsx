@@ -1,4 +1,4 @@
-import { profileRows } from '../../analytics/typeDetection';
+import { buildDatasetProfile } from '../../utils/datasetProfile';
 import { Dataset } from '../../types';
 import { makeDataset } from '../../utils/dataset';
 
@@ -8,6 +8,11 @@ interface OptionalCleaningProps {
 }
 
 export default function OptionalCleaning({ dataset, onDatasetChange }: OptionalCleaningProps) {
+  const applyRows = (rows: Dataset['rows']) => {
+    const { profiles, profile } = buildDatasetProfile(rows);
+    onDatasetChange({ ...dataset, rows, profiles, profile });
+  };
+
   const clean = (action: 'duplicates' | 'trim') => {
     let rows = dataset.rows;
 
@@ -24,7 +29,7 @@ export default function OptionalCleaning({ dataset, onDatasetChange }: OptionalC
       );
     }
 
-    onDatasetChange({ ...dataset, rows, profiles: profileRows(rows) });
+    applyRows(rows);
   };
 
   return (

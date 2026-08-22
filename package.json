@@ -14,7 +14,8 @@
     "build": "tsc -b && vite build",
     "test": "vitest run",
     "test:watch": "vitest",
-    "verify:fixtures": "node scripts/verify-fixtures.mjs"
+    "verify:fixtures": "node scripts/verify-fixtures.mjs",
+    "verify:e2e": "node scripts/e2e-messy-verify.mjs"
   },
   "dependencies": {
     "@vitejs/plugin-react": "6.0.3",
@@ -32,6 +33,7 @@
     "@types/react": "19.2.17",
     "@types/react-dom": "19.2.3",
     "jsdom": "29.1.1",
+    "playwright": "^1.52.0",
     "typescript": "7.0.2",
     "vite": "8.1.4",
     "vitest": "4.1.10"

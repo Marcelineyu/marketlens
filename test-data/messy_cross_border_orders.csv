@@ -1,0 +1,487 @@
+order_id,order_date,收货国家,category,carrier,status,weight_kg,amount_usd,customs_cleared,warehouse_code,internal_flag,notes
+ORD-00010,2023-04-05,USA,Electronics,FedEx,Exception,,638.11 USD,false,HZ-01,,Duplicate of earlier order?
+ORD-00100,06/18/2023,Netherlands,Pet Supplies,fedex,清关中,9.3kg,10.33 USD,true,HZ-01,,重量与申报不符，已重新申报
+ORD-00272,18-May-2023,France,Beauty,fedex,In transit,19.7kg,$17.45,1,HZ-01,,"Refund issued, see ticket #4471"
+ORD-00283,25-Oct-2023,United States,Beauty,SF Express,in_transit,N/A,,TRUE,HZ-01,,Held at customs; missing HS code
+ORD-00424,04/08/2023,Netherlands,Apparel,,In transit,10.21,577.73,yes,HZ-01,,
+ORD-00473,12-Mar-2023,Japan,Pet Supplies,,已签收,N/A,183.31,yes,SZ-07,,
+ORD-00302,26-Feb-2023,United States,Pet Supplies,顺丰,delivered,22.32,437.09 USD,,HZ-01,,
+ORD-00269,2023-06-03,United States,Beauty,DHL Express,customs hold,21.91,$520.77,1,HZ-01,,
+000140,14-May-2023,Netherlands,Apparel,Maersk,Delivered,23.16,702.44,yes,HZ-01,,重量与申报不符，已重新申报
+000259,,France,Beauty,Maersk,In Transit,N/A,,no,SZ-07,,"Refund issued, see ticket #4471"
+ORD-00250,2023/7/15,日本,Apparel,DHL Express,清关中,,$128.97,FALSE,HZ-01,,"Carrier note: ""address incomplete"", resolved 3/14"
+ORD-00201,,us,Beauty,,delivered,17.1kg,164.27,true,HZ-01,,"Refund issued, see ticket #4471"
+000084,2023/11/10,United States,Apparel,,in_transit,N/A,362.81 USD,1,HZ-02,,
+ORD-00353,,France,Electronics,DHL,DELIVERED ,,598.01,,HZ-02,,"Buyer requested split shipment, partial delivery OK"
+ORD-00004,,United States,Pet Supplies,FedEx,Customs Hold,11.3kg,526.79,,HZ-02,,重量与申报不符，已重新申报
+ORD-00207,2023-06-13,United States,Beauty,UPS,customs hold,,331.74 USD,false,HZ-02,,"Buyer requested split shipment, partial delivery OK"
+ORD-00422,2023-10-24,France,Beauty,,Cancelled,18.17,741.15,false,HZ-01,,Held at customs; missing HS code
+ORD-00407,06/26/2023,United States,Apparel,Maersk,Customs Hold,3.4kg,,true,SZ-07,,重量与申报不符，已重新申报
+ORD-00158,2023-06-28,germany,Beauty,dhl ,DELIVERED ,,772.40,no,SZ-07,,
+ORD-00270,,germany,Beauty,dhl ,in_transit,4.6kg,207.73,false,HZ-01,,
+ORD-00311,2023/1/26,United States,Beauty,Maersk,,20.64,184.79,no,HZ-01,,
+ORD-00452,2023-06-25,germany,Electronics,顺丰,delivered,17.42,,yes,HZ-02,,重量与申报不符，已重新申报
+ORD-00384,26-Nov-2023,Japan,Pet Supplies,FedEx,In transit,19.8kg,,FALSE,SZ-07,,"Carrier note: ""address incomplete"", resolved 3/14"
+ORD-00046,02/20/2023,germany,Apparel,fedex,清关中,19.06,692.14,true,HZ-01,,Duplicate of earlier order?
+ORD-00067,07/02/2023,United States,Pet Supplies,DHL Express,In transit,28.47,$379.99,TRUE,HZ-01,,
+ORD-00094,05/26/2023,Canada,Electronics,dhl ,in_transit,,$896.54,yes,HZ-01,,重量与申报不符，已重新申报
+ORD-00393,2023/5/14,Germany,Apparel,DHL,delivered,N/A,$427.12,yes,HZ-01,,"Carrier note: ""address incomplete"", resolved 3/14"
+ORD-00162,2023/7/6,USA,Apparel,FedEx,Cancelled,28.7kg,$511.51,false,HZ-01,,
+ORD-00043,2023-02-01,USA,Apparel,dhl ,In transit,23.98,745.16,0,SZ-07,,
+ORD-00038,8-Oct-2023,United States,Beauty,DHL Express,DELIVERED ,N/A,,yes,HZ-02,,
+000196,2023-01-22,Japan,Electronics,dhl ,In transit,,327.08,no,SZ-07,,Held at customs; missing HS code
+ORD-00429,06/26/2023,Japan,Pet Supplies,SF Express,Exception,17.23,713.59,true,HZ-01,,
+ORD-00127,2023/9/11,France,Beauty,FedEx,Exception,N/A,,true,HZ-02,,"Refund issued, see ticket #4471"
+ORD-00198,2023-09-06,Canada,Apparel,UPS,customs hold,N/A,331.54 USD,1,HZ-01,,"Refund issued, see ticket #4471"
+ORD-00474,,Germany,Apparel,dhl ,,13.0kg,,0,HZ-01,,"Refund issued, see ticket #4471"
+ORD-00351,12/04/2023,USA,Pet Supplies,DHL Express,清关中,14.47,$144.84,,HZ-01,,
+ORD-00080,,us,Home & Kitchen,UPS,customs hold,3.75,790.18,true,HZ-02,,"Carrier note: ""address incomplete"", resolved 3/14"
+000175,6-Jan-2023,日本,Pet Supplies,DHL,in_transit,N/A,229.52,,HZ-02,,"Refund issued, see ticket #4471"
+000245,2023/10/15,germany,Apparel,DHL,in_transit,N/A,196.55 USD,0,HZ-01,,"Buyer requested split shipment, partial delivery OK"
+ORD-00086,2023-03-01,Japan,Electronics,SF Express,delivered,13.94,523.39 USD,no,SZ-07,,
+ORD-00437,2023-06-21,Czech Republic,Pet Supplies,,Exception,5.13,877.35,TRUE,HZ-02,,"Refund issued, see ticket #4471"
+ORD-00220,,USA,Electronics,Maersk,In Transit,28.6kg,$687.63,false,HZ-01,,
+000462,10/06/2023,United States,Apparel,dhl ,,7.32,411.74,no,HZ-01,,重量与申报不符，已重新申报
+000126,,us,Electronics,FedEx,customs hold,27.26,,no,HZ-01,,Duplicate of earlier order?
+ORD-00291,,Canada,Apparel,顺丰,Exception,9.29,772.12 USD,0,SZ-07,,
+ORD-00397,25-Apr-2023,Japan,Beauty,Maersk,customs hold,,179.91,no,HZ-01,,
+ORD-00292,2-Nov-2023,United States,Pet Supplies,dhl ,In transit,6.2kg,334.23 USD,no,HZ-01,,"Carrier note: ""address incomplete"", resolved 3/14"
+ORD-00391,2023/10/18,France,Pet Supplies,fedex,Delivered,1.56,544.20,FALSE,HZ-01,,
+ORD-00101,04/23/2023,Czech Republic,Home & Kitchen,dhl ,Exception,4.93,,true,HZ-01,,Held at customs; missing HS code
+ORD-00467,2023/7/23,United States,Electronics,dhl ,delivered,,598.00 USD,TRUE,SZ-07,,"Buyer requested split shipment, partial delivery OK"
+ORD-00465,09/13/2023,us,Electronics,SF Express,In Transit,22.33,50.61,0,HZ-01,,"Buyer requested split shipment, partial delivery OK"
+ORD-00197,2023/7/16,Czech Republic,Pet Supplies,,in_transit,4.80,586.49,,HZ-01,,
+ORD-00254,2023-01-03,日本,Apparel,DHL Express,Delivered,28.9kg,$223.63,false,HZ-01,,"Refund issued, see ticket #4471"
+ORD-00177,,USA,Electronics,dhl ,In Transit,4.20,30.87,yes,SZ-07,,
+ORD-00218,2023/7/23,France,Pet Supplies,FedEx,In Transit,22.54,195.44 USD,,HZ-01,,重量与申报不符，已重新申报
+ORD-00372,2023/9/8,France,Electronics,,清关中,16.73,221.26 USD,1,HZ-01,,
+ORD-00312,21-Feb-2023,日本,Electronics,顺丰,Exception,,$185.54,0,HZ-01,,"Carrier note: ""address incomplete"", resolved 3/14"
+ORD-00232,18-Feb-2023,Japan,Beauty,SF Express,customs hold,,725.31 USD,true,HZ-02,,
+ORD-00215,,USA,Beauty,FedEx,,22.07,110.79,yes,HZ-01,,Held at customs; missing HS code
+ORD-00144,02/22/2023,United States,Beauty,dhl ,Exception,18.83,,TRUE,HZ-01,,
+ORD-00145,2023-03-14,germany,Home & Kitchen,SF Express,清关中,N/A,709.59,TRUE,HZ-02,,"Refund issued, see ticket #4471"
+ORD-00243,2023/8/17,United States,Home & Kitchen,dhl ,DELIVERED ,0.94,$854.30,1,HZ-02,,
+ORD-00143,2023-10-25,Japan,Pet Supplies,,In transit,,13.54,true,SZ-07,,
+000105,2023/7/28,France,Beauty,dhl ,Cancelled,21.52,,0,HZ-01,,"Buyer requested split shipment, partial delivery OK"
+ORD-00415,07/01/2023,us,Electronics,UPS,customs hold,,543.10,no,HZ-01,,
+000322,,USA,Pet Supplies,顺丰,Delivered,,$788.69,no,HZ-02,,
+000224,2023/12/10,United States,Electronics,UPS,Customs Hold,9.26,46.71 USD,0,SZ-07,,重量与申报不符，已重新申报
+ORD-00153,2023-08-10,germany,Apparel,fedex,In transit,23.19,618.86,true,SZ-07,,
+ORD-00468,2023-05-07,Canada,Beauty,,,,$891.62,0,HZ-01,,
+ORD-00027,2023/9/7,USA,Beauty,dhl ,In transit,N/A,847.82,0,HZ-01,,
+ORD-00152,12/01/2023,日本,Apparel,,In transit,10.1kg,62.09,false,HZ-02,,Held at customs; missing HS code
+000343,2023-02-11,USA,Apparel,顺丰,Customs Hold,,,FALSE,HZ-01,,重量与申报不符，已重新申报
+ORD-00314,,Czech Republic,Pet Supplies,FedEx,Customs Hold,22.57,871.87 USD,TRUE,HZ-02,,Held at customs; missing HS code
+ORD-00431,,日本,Apparel,DHL,in_transit,N/A,,1,HZ-01,,重量与申报不符，已重新申报
+ORD-00212,2023-06-07,United States,Pet Supplies,UPS,,20.90,$355.82,,HZ-01,,"Buyer requested split shipment, partial delivery OK"
+ORD-00219,2023/12/17,Japan,Home & Kitchen,FedEx,In transit,N/A,,,HZ-01,,Duplicate of earlier order?
+ORD-00284,,USA,Pet Supplies,FedEx,Cancelled,N/A,392.42,no,HZ-01,,"Buyer requested split shipment, partial delivery OK"
+ORD-00136,4-Sep-2023,Netherlands,Electronics,DHL Express,Customs Hold,20.20,,0,SZ-07,,
+ORD-00176,2023/12/28,日本,Home & Kitchen,fedex,delivered,N/A,71.64 USD,0,HZ-02,,"Refund issued, see ticket #4471"
+000238,,United States,Beauty,FedEx,Delivered,16.98,160.76,no,HZ-01,,
+ORD-00447,10/06/2023,Canada,Home & Kitchen,DHL Express,customs hold,N/A,$543.85,yes,HZ-01,,
+ORD-00062,09/19/2023,Netherlands,Apparel,FedEx,,N/A,$631.14,TRUE,HZ-01,,"Refund issued, see ticket #4471"
+ORD-00244,3-Sep-2023,germany,Pet Supplies,FedEx,In Transit,11.9kg,,true,SZ-07,,
+ORD-00277,10/08/2023,United States,Pet Supplies,UPS,customs hold,,773.07 USD,false,SZ-07,,
+000427,2023/6/12,Canada,Electronics,顺丰,清关中,,,,HZ-01,,
+000308,11/19/2023,us,Electronics,,,26.74,105.77,,HZ-01,,"Buyer requested split shipment, partial delivery OK"
+ORD-00228,18-Mar-2023,Germany,Electronics,DHL,Delivered,N/A,346.40 USD,FALSE,SZ-07,,Held at customs; missing HS code
+ORD-00116,05/27/2023,France,Electronics,顺丰,DELIVERED ,7.97,861.83,FALSE,HZ-01,,Duplicate of earlier order?
+ORD-00464,2023-01-16,France,Electronics,DHL,In Transit,27.9kg,,,HZ-01,,重量与申报不符，已重新申报
+ORD-00323,2023-10-17,Netherlands,Electronics,,Exception,4.5kg,14.31 USD,yes,HZ-01,,"Carrier note: ""address incomplete"", resolved 3/14"
+ORD-00209,6-Apr-2023,germany,Electronics,SF Express,In transit,,248.54,false,HZ-01,,Duplicate of earlier order?
+000182,2023/4/28,Canada,Home & Kitchen,UPS,delivered,N/A,55.77,,HZ-01,,
+ORD-00405,03/08/2023,Netherlands,Beauty,UPS,in_transit,,154.27,FALSE,HZ-01,,Duplicate of earlier order?
+ORD-00256,2023/6/25,日本,Beauty,fedex,Customs Hold,2.8kg,$778.07,TRUE,HZ-01,,重量与申报不符，已重新申报
+ORD-00110,2023-03-23,United States,Home & Kitchen,DHL Express,Cancelled,N/A,107.81,TRUE,HZ-01,,
+000014,2023/10/12,United States,Home & Kitchen,顺丰,Customs Hold,N/A,555.75,0,HZ-02,,"Carrier note: ""address incomplete"", resolved 3/14"
+ORD-00150,2023-08-20,germany,Apparel,,Cancelled,21.94,354.94 USD,0,HZ-02,,
+ORD-00107,2023-02-17,USA,Apparel,FedEx,Cancelled,19.33,874.93 USD,false,HZ-01,,重量与申报不符，已重新申报
+ORD-00099,17-Jul-2023,United States,Electronics,顺丰,已签收,,205.70 USD,TRUE,HZ-01,,
+ORD-00005,03/23/2023,United States,Pet Supplies,fedex,customs hold,10.98,,0,HZ-01,,Duplicate of earlier order?
+ORD-00115,1-Jan-2023,Czech Republic,Home & Kitchen,顺丰,Cancelled,N/A,$159.97,true,HZ-02,,重量与申报不符，已重新申报
+ORD-00132,2023/6/16,Netherlands,Pet Supplies,dhl ,Exception,N/A,726.45 USD,no,HZ-01,,"Carrier note: ""address incomplete"", resolved 3/14"
+ORD-00375,2023/1/21,Canada,Home & Kitchen,Maersk,Exception,0.5kg,237.53,false,HZ-02,,
+ORD-00183,2023/4/5,Netherlands,Beauty,DHL,,15.24,297.32,TRUE,HZ-01,,"Carrier note: ""address incomplete"", resolved 3/14"
+ORD-00458,2023/1/2,日本,Pet Supplies,SF Express,DELIVERED ,11.05,,no,HZ-01,,"Refund issued, see ticket #4471"
+ORD-00276,20-May-2023,United States,Pet Supplies,FedEx,清关中,11.9kg,$324.84,yes,HZ-01,,Duplicate of earlier order?
+ORD-00368,06/12/2023,Japan,Home & Kitchen,FedEx,,N/A,332.36,true,HZ-01,,Held at customs; missing HS code
+ORD-00354,,Japan,Apparel,dhl ,delivered,20.22,116.96,false,HZ-01,,
+ORD-00279,,Japan,Apparel,顺丰,Exception,N/A,373.74 USD,FALSE,HZ-01,,Held at customs; missing HS code
+ORD-00285,,Netherlands,Beauty,DHL,delivered,,$301.87,0,HZ-02,,Held at customs; missing HS code
+000266,2023-12-12,Czech Republic,Electronics,SF Express,DELIVERED ,26.51,$197.16,yes,HZ-01,,
+ORD-00061,2023-04-19,Canada,Apparel,DHL Express,Exception,0.24,$83.82,yes,SZ-07,,Held at customs; missing HS code
+000021,,Czech Republic,Apparel,DHL Express,customs hold,27.16,32.57,,HZ-01,,
+ORD-00412,15-Sep-2023,Czech Republic,Beauty,FedEx,Cancelled,19.64,772.60,no,HZ-01,,"Buyer requested split shipment, partial delivery OK"
+ORD-00356,,日本,Electronics,dhl ,Delivered,,109.39,TRUE,HZ-01,,
+ORD-00216,10/27/2023,日本,Beauty,Maersk,In Transit,9.47,666.58,1,SZ-07,,重量与申报不符，已重新申报
+ORD-00093,2023-12-17,United States,Pet Supplies,SF Express,Exception,N/A,$575.70,true,HZ-01,,
+ORD-00213,2023/3/27,Germany,Apparel,SF Express,Customs Hold,N/A,66.79 USD,true,HZ-01,,
+ORD-00439,2023-12-21,Japan,Pet Supplies,DHL,,20.71,135.08,no,HZ-02,,"Buyer requested split shipment, partial delivery OK"
+ORD-00417,2023/6/24,USA,Beauty,dhl ,In transit,24.09,716.16,false,HZ-01,,"Carrier note: ""address incomplete"", resolved 3/14"
+ORD-00373,17-Mar-2023,us,Home & Kitchen,dhl ,Customs Hold,1.9kg,849.77,yes,HZ-02,,Duplicate of earlier order?
+ORD-00050,07/01/2023,United States,Beauty,顺丰,In transit,,635.38,yes,HZ-01,,Held at customs; missing HS code
+ORD-00148,,us,Beauty,DHL Express,Delivered,4.04,$202.67,no,HZ-01,,
+ORD-00111,2023-09-22,France,Beauty,dhl ,已签收,22.90,66.66,false,HZ-01,,
+ORD-00418,,United States,Electronics,,In transit,22.02,892.53,,HZ-01,,
+ORD-00029,03/22/2023,USA,Beauty,Maersk,In transit,,$674.04,no,HZ-02,,"Buyer requested split shipment, partial delivery OK"
+ORD-00404,2023-12-24,United States,Apparel,DHL Express,customs hold,11.94,471.67,FALSE,HZ-01,,重量与申报不符，已重新申报
+ORD-00039,2023-06-08,Germany,Electronics,UPS,DELIVERED ,29.2kg,242.81 USD,TRUE,HZ-01,,Held at customs; missing HS code
+ORD-00258,,Canada,Pet Supplies,Maersk,DELIVERED ,N/A,$692.33,no,HZ-01,,"Carrier note: ""address incomplete"", resolved 3/14"
+000469,08/14/2023,Canada,Home & Kitchen,DHL Express,清关中,3.98,,TRUE,HZ-01,,
+ORD-00166,06/24/2023,Czech Republic,Home & Kitchen,SF Express,Delivered,2.5kg,835.49,FALSE,HZ-02,,重量与申报不符，已重新申报
+ORD-00026,,us,Apparel,顺丰,customs hold,13.4kg,$509.06,,HZ-02,,"Refund issued, see ticket #4471"
+000049,,Germany,Apparel,DHL Express,清关中,2.42,825.57,,HZ-01,,
+ORD-00446,2023/9/2,Czech Republic,Home & Kitchen,dhl ,delivered,N/A,,TRUE,HZ-01,,Duplicate of earlier order?
+ORD-00471,12/14/2023,Canada,Electronics,fedex,Cancelled,4.1kg,$398.64,FALSE,HZ-01,,Held at customs; missing HS code
+ORD-00318,9-Jul-2023,USA,Apparel,DHL Express,已签收,11.39,$200.96,no,SZ-07,,Held at customs; missing HS code
+ORD-00466,2023/2/7,United States,Pet Supplies,fedex,in_transit,,$813.12,no,HZ-01,,"Carrier note: ""address incomplete"", resolved 3/14"
+000413,8-Jan-2023,United States,Pet Supplies,dhl ,Customs Hold,9.95,$65.10,TRUE,HZ-01,,Duplicate of earlier order?
+ORD-00304,2023/6/1,Germany,Electronics,fedex,delivered,10.91,657.04,FALSE,HZ-01,,
+ORD-00345,2023/3/26,USA,Electronics,DHL,delivered,,851.22,false,SZ-07,,"Refund issued, see ticket #4471"
+ORD-00033,02/20/2023,United States,Apparel,dhl ,Customs Hold,N/A,$247.88,TRUE,HZ-01,,"Refund issued, see ticket #4471"
+ORD-00264,2023/4/11,Canada,Apparel,fedex,Customs Hold,N/A,,false,SZ-07,,
+ORD-00066,25-May-2023,United States,Pet Supplies,顺丰,清关中,7.08,286.05,true,HZ-01,,Duplicate of earlier order?
+ORD-00078,04/08/2023,Germany,Pet Supplies,FedEx,in_transit,13.29,666.36,FALSE,HZ-02,,"Carrier note: ""address incomplete"", resolved 3/14"
+ORD-00001,,United States,Apparel,,Delivered,11.97,296.86,,HZ-01,,
+000112,08/04/2023,United States,Electronics,fedex,in_transit,N/A,$38.20,no,HZ-02,,"Carrier note: ""address incomplete"", resolved 3/14"
+000252,2023-12-28,Czech Republic,Apparel,DHL Express,In Transit,,888.82 USD,yes,SZ-07,,
+ORD-00432,2023/5/27,USA,Beauty,DHL,delivered,N/A,730.88,false,HZ-01,,
+ORD-00202,2023/3/17,Czech Republic,Pet Supplies,SF Express,,1.07,$685.47,TRUE,HZ-01,,重量与申报不符，已重新申报
+ORD-00073,01/27/2023,United States,Beauty,顺丰,,27.51,11.36,1,HZ-01,,Held at customs; missing HS code
+000210,,Czech Republic,Pet Supplies,UPS,customs hold,25.78,458.31,false,HZ-02,,"Refund issued, see ticket #4471"
+ORD-00032,23-Aug-2023,United States,Apparel,DHL,,27.6kg,370.11,true,HZ-02,,
+ORD-00181,8-Jul-2023,France,Beauty,,,N/A,$873.68,no,HZ-02,,"Refund issued, see ticket #4471"
+000336,2023/9/27,United States,Beauty,FedEx,In Transit,24.26,534.50,no,HZ-01,,"Refund issued, see ticket #4471"
+ORD-00068,03/11/2023,USA,Pet Supplies,顺丰,Delivered,22.04,358.84 USD,yes,HZ-02,,重量与申报不符，已重新申报
+ORD-00275,2023/1/16,Japan,Apparel,,customs hold,13.8kg,497.66 USD,1,HZ-01,,Held at customs; missing HS code
+000147,11/16/2023,USA,Home & Kitchen,SF Express,Delivered,16.55,,TRUE,HZ-01,,
+ORD-00416,07/03/2023,Japan,Apparel,Maersk,,13.08,419.69,no,HZ-01,,"Buyer requested split shipment, partial delivery OK"
+ORD-00419,2023-10-12,United States,Electronics,Maersk,Delivered,26.39,23.65,,HZ-01,,"Refund issued, see ticket #4471"
+ORD-00061,2023-04-19,Canada,Apparel,DHL Express,Cancelled,0.24,,yes,SZ-07,,Held at customs; missing HS code
+ORD-00333,4-Sep-2023,United States,Beauty,fedex,DELIVERED ,4.70,708.41,1,SZ-07,,"Carrier note: ""address incomplete"", resolved 3/14"
+ORD-00130,2023/11/7,Canada,Pet Supplies,FedEx,DELIVERED ,27.90,197.12,no,HZ-02,,Duplicate of earlier order?
+ORD-00121,2023-05-24,USA,Home & Kitchen,FedEx,In transit,9.98,318.98,true,HZ-01,,"Carrier note: ""address incomplete"", resolved 3/14"
+ORD-00379,01/14/2023,germany,Beauty,DHL,清关中,N/A,,no,HZ-01,,"Buyer requested split shipment, partial delivery OK"
+ORD-00388,01/17/2023,Netherlands,Pet Supplies,SF Express,Exception,26.39,897.92,FALSE,HZ-02,,Duplicate of earlier order?
+ORD-00040,2023-04-17,United States,Apparel,dhl ,DELIVERED ,15.18,82.83 USD,1,SZ-07,,
+ORD-00135,,Canada,Apparel,FedEx,Customs Hold,18.4kg,714.17,false,SZ-07,,
+ORD-00173,11/23/2023,日本,Apparel,FedEx,Delivered,6.3kg,687.06,FALSE,SZ-07,,Held at customs; missing HS code
+ORD-00104,2023/11/21,日本,Electronics,Maersk,In Transit,18.3kg,376.56,FALSE,HZ-01,,
+ORD-00425,2023-10-11,Japan,Apparel,DHL Express,In transit,2.73,,0,HZ-02,,Duplicate of earlier order?
+ORD-00128,2023-06-21,Germany,Apparel,SF Express,In transit,21.9kg,$688.33,TRUE,HZ-01,,
+ORD-00421,2023-01-03,germany,Electronics,FedEx,customs hold,,216.53,yes,HZ-01,,"Refund issued, see ticket #4471"
+ORD-00316,,Germany,Beauty,DHL Express,in_transit,,$444.24,,HZ-01,,
+000392,03/09/2023,United States,Home & Kitchen,dhl ,delivered,0.32,84.52,FALSE,HZ-01,,
+ORD-00395,2023-07-10,us,Apparel,dhl ,,,726.20,0,HZ-01,,
+ORD-00092,2023/3/12,germany,Home & Kitchen,顺丰,customs hold,12.13,,,HZ-01,,
+ORD-00239,2023/12/5,United States,Pet Supplies,FedEx,清关中,13.90,634.12,FALSE,HZ-01,,
+ORD-00247,2023-10-05,Japan,Home & Kitchen,FedEx,,17.2kg,892.29 USD,1,SZ-07,,
+ORD-00423,2023-08-28,United States,Pet Supplies,SF Express,DELIVERED ,14.75,$833.19,no,HZ-02,,
+ORD-00129,2023-10-09,us,Apparel,SF Express,customs hold,N/A,,false,HZ-02,,Duplicate of earlier order?
+ORD-00299,,United States,Apparel,顺丰,in_transit,19.79,$747.02,TRUE,HZ-02,,
+ORD-00403,2023/3/3,Canada,Pet Supplies,DHL,In Transit,4.2kg,576.03 USD,FALSE,HZ-01,,Held at customs; missing HS code
+000203,2023-01-09,日本,Home & Kitchen,UPS,已签收,10.74,136.38,0,SZ-07,,Held at customs; missing HS code
+ORD-00013,01/19/2023,Japan,Home & Kitchen,UPS,清关中,18.10,152.77 USD,TRUE,HZ-01,,"Buyer requested split shipment, partial delivery OK"
+ORD-00225,2023/8/25,United States,Apparel,,In Transit,2.34,266.24,FALSE,HZ-02,,Held at customs; missing HS code
+000056,2023/9/8,germany,Beauty,SF Express,DELIVERED ,,$581.74,,HZ-01,,"Buyer requested split shipment, partial delivery OK"
+ORD-00025,2023-02-18,us,Electronics,fedex,Delivered,,298.78,FALSE,SZ-07,,Duplicate of earlier order?
+ORD-00058,16-Jan-2023,日本,Apparel,DHL Express,Exception,N/A,673.29,,SZ-07,,"Buyer requested split shipment, partial delivery OK"
+ORD-00459,03/06/2023,USA,Home & Kitchen,,,7.80,126.99 USD,FALSE,HZ-01,,"Carrier note: ""address incomplete"", resolved 3/14"
+ORD-00303,2023-09-19,Netherlands,Electronics,SF Express,清关中,1.27,,no,HZ-01,,重量与申报不符，已重新申报
+ORD-00331,03/23/2023,Japan,Pet Supplies,SF Express,Exception,N/A,,yes,HZ-01,,"Buyer requested split shipment, partial delivery OK"
+ORD-00178,2023/11/19,Japan,Electronics,顺丰,delivered,8.0kg,25.35,no,HZ-01,,
+ORD-00300,2023-10-18,us,Electronics,顺丰,In Transit,25.9kg,186.85 USD,false,SZ-07,,"Carrier note: ""address incomplete"", resolved 3/14"
+ORD-00064,2023/8/22,United States,Apparel,FedEx,Exception,1.85,636.55 USD,1,HZ-01,,"Buyer requested split shipment, partial delivery OK"
+ORD-00131,06/26/2023,Germany,Beauty,fedex,In transit,,896.56,true,HZ-02,,
+ORD-00359,06/01/2023,germany,Home & Kitchen,Maersk,DELIVERED ,N/A,487.75 USD,FALSE,HZ-01,,重量与申报不符，已重新申报
+ORD-00451,6-Jun-2023,United States,Apparel,SF Express,delivered,22.9kg,,true,HZ-02,,"Carrier note: ""address incomplete"", resolved 3/14"
+ORD-00374,2023-11-11,us,Apparel,UPS,delivered,,708.27,FALSE,HZ-02,,Duplicate of earlier order?
+ORD-00286,2023/8/13,USA,Pet Supplies,DHL,Exception,5.45,,false,HZ-01,,Held at customs; missing HS code
+ORD-00461,2023/8/19,Netherlands,Apparel,顺丰,,7.40,223.79 USD,TRUE,HZ-01,,
+ORD-00201,,us,Beauty,,delivered,17.1kg,164.27,true,HZ-01,,"Refund issued, see ticket #4471"
+ORD-00470,9-Dec-2023,USA,Apparel,SF Express,Cancelled,1.8kg,723.17,yes,HZ-01,,Duplicate of earlier order?
+ORD-00463,2023/9/25,us,Electronics,DHL Express,In Transit,22.68,,1,HZ-01,,
+ORD-00139,2023/1/7,Canada,Electronics,UPS,delivered,22.76,,no,HZ-01,,Duplicate of earlier order?
+000371,2023-07-15,United States,Electronics,dhl ,In Transit,27.71,,no,HZ-02,,Duplicate of earlier order?
+000098,2023-10-24,Germany,Pet Supplies,fedex,In Transit,13.38,$329.34,no,HZ-01,,
+ORD-00037,2023-07-12,USA,Home & Kitchen,dhl ,Exception,10.41,621.47,yes,HZ-02,,
+000154,,Canada,Beauty,UPS,customs hold,24.4kg,265.36,FALSE,SZ-07,,"Refund issued, see ticket #4471"
+ORD-00157,04/03/2023,France,Apparel,UPS,清关中,6.22,433.11,no,HZ-02,,"Refund issued, see ticket #4471"
+000420,2023/3/21,United States,Beauty,DHL Express,清关中,16.89,420.46,yes,SZ-07,,"Carrier note: ""address incomplete"", resolved 3/14"
+ORD-00306,,Japan,Electronics,dhl ,Delivered,12.23,854.86 USD,FALSE,HZ-01,,Duplicate of earlier order?
+ORD-00428,20-Jul-2023,USA,Pet Supplies,DHL,Exception,,,true,HZ-01,,Held at customs; missing HS code
+ORD-00024,2023-03-20,USA,Electronics,DHL Express,Customs Hold,,143.44,FALSE,SZ-07,,
+ORD-00079,2023-11-15,United States,Home & Kitchen,顺丰,已签收,15.88,893.26,0,HZ-01,,
+ORD-00334,05/20/2023,us,Apparel,dhl ,in_transit,18.2kg,643.12,FALSE,HZ-01,,
+ORD-00074,26-Jan-2023,France,Electronics,,已签收,27.86,734.80,no,HZ-01,,Duplicate of earlier order?
+ORD-00341,,France,Home & Kitchen,dhl ,in_transit,22.48,507.76 USD,false,HZ-02,,
+ORD-00016,28-Dec-2023,Japan,Apparel,DHL Express,in_transit,9.08,823.42,false,SZ-07,,"Refund issued, see ticket #4471"
+000399,23-Dec-2023,Netherlands,Apparel,Maersk,Cancelled,N/A,148.35,yes,HZ-01,,重量与申报不符，已重新申报
+ORD-00326,2023/5/10,us,Pet Supplies,UPS,Customs Hold,28.87,874.56 USD,1,HZ-01,,"Carrier note: ""address incomplete"", resolved 3/14"
+ORD-00142,,Netherlands,Pet Supplies,,Delivered,23.57,$121.79,1,HZ-01,,
+ORD-00251,2023-11-11,us,Pet Supplies,dhl ,清关中,21.9kg,650.11 USD,true,HZ-01,,重量与申报不符，已重新申报
+ORD-00204,2023-01-15,日本,Electronics,FedEx,已签收,26.7kg,25.44,TRUE,HZ-01,,
+ORD-00349,07/03/2023,us,Home & Kitchen,SF Express,清关中,27.3kg,$548.46,false,HZ-01,,"Buyer requested split shipment, partial delivery OK"
+ORD-00310,02/26/2023,USA,Pet Supplies,DHL Express,DELIVERED ,23.64,,no,HZ-01,,"Buyer requested split shipment, partial delivery OK"
+ORD-00053,25-Apr-2023,Netherlands,Home & Kitchen,SF Express,customs hold,N/A,230.40 USD,,HZ-01,,
+ORD-00223,2023/10/15,us,Home & Kitchen,fedex,Delivered,20.38,497.05,no,HZ-02,,"Buyer requested split shipment, partial delivery OK"
+ORD-00023,2-Mar-2023,Czech Republic,Pet Supplies,Maersk,In transit,,689.20 USD,,HZ-01,,"Refund issued, see ticket #4471"
+ORD-00409,12-May-2023,germany,Pet Supplies,UPS,In transit,N/A,810.26 USD,1,HZ-01,,
+000077,2023-12-18,Germany,Apparel,fedex,清关中,13.94,,yes,HZ-01,,"Carrier note: ""address incomplete"", resolved 3/14"
+ORD-00072,9-Jun-2023,日本,Home & Kitchen,fedex,Cancelled,N/A,$181.89,no,HZ-01,,"Carrier note: ""address incomplete"", resolved 3/14"
+ORD-00352,2023-02-28,Japan,Home & Kitchen,Maersk,customs hold,27.51,,,HZ-01,,
+ORD-00075,07/25/2023,us,Beauty,dhl ,Exception,2.55,330.78,TRUE,HZ-02,,"Refund issued, see ticket #4471"
+ORD-00180,12/13/2023,United States,Beauty,SF Express,清关中,,776.09,,HZ-01,,Held at customs; missing HS code
+ORD-00041,,USA,Pet Supplies,SF Express,,9.27,359.43 USD,no,HZ-02,,
+ORD-00013,01/19/2023,Japan,Home & Kitchen,UPS,清关中,18.10,152.77 USD,TRUE,HZ-01,,"Buyer requested split shipment, partial delivery OK"
+ORD-00362,8-Jul-2023,Germany,Home & Kitchen,dhl ,Cancelled,N/A,555.93,false,HZ-01,,
+ORD-00321,2023/6/10,Japan,Home & Kitchen,顺丰,Customs Hold,N/A,466.73 USD,no,HZ-01,,
+000385,2023/11/8,germany,Pet Supplies,fedex,Exception,N/A,516.72,FALSE,HZ-01,,Duplicate of earlier order?
+ORD-00046,02/20/2023,germany,Apparel,fedex,清关中,19.06,692.14,true,HZ-01,,Duplicate of earlier order?
+000448,2023-05-09,us,Electronics,,In Transit,14.32,154.10,FALSE,HZ-02,,"Refund issued, see ticket #4471"
+ORD-00296,01/23/2023,United States,Electronics,顺丰,In Transit,20.64,,false,SZ-07,,重量与申报不符，已重新申报
+ORD-00268,10/08/2023,Canada,Home & Kitchen,DHL,DELIVERED ,26.48,,,SZ-07,,"Buyer requested split shipment, partial delivery OK"
+ORD-00298,04/15/2023,France,Electronics,SF Express,in_transit,19.71,579.58,1,HZ-01,,
+ORD-00249,2023/11/11,Japan,Apparel,FedEx,,N/A,646.40 USD,false,HZ-01,,
+ORD-00034,09/23/2023,United States,Electronics,fedex,Delivered,18.73,380.64 USD,true,HZ-01,,"Carrier note: ""address incomplete"", resolved 3/14"
+000406,08/08/2023,日本,Apparel,顺丰,In transit,,$874.80,false,HZ-01,,"Buyer requested split shipment, partial delivery OK"
+ORD-00290,,Netherlands,Home & Kitchen,fedex,In Transit,N/A,,false,HZ-02,,Held at customs; missing HS code
+ORD-00365,06/11/2023,United States,Beauty,FedEx,delivered,,$404.88,false,HZ-01,,重量与申报不符，已重新申报
+ORD-00163,2023-01-27,Germany,Pet Supplies,顺丰,Delivered,2.0kg,848.01 USD,FALSE,HZ-01,,重量与申报不符，已重新申报
+000231,2023/6/3,United States,Electronics,DHL Express,In transit,,$260.67,yes,HZ-01,,Duplicate of earlier order?
+ORD-00081,20-Dec-2023,us,Home & Kitchen,UPS,in_transit,3.4kg,$699.30,true,HZ-01,,"Buyer requested split shipment, partial delivery OK"
+000364,2023/12/9,USA,Home & Kitchen,fedex,In Transit,21.7kg,$134.87,1,HZ-02,,
+000378,2023/6/17,Canada,Electronics,,已签收,,,false,HZ-02,,"Buyer requested split shipment, partial delivery OK"
+ORD-00221,2023/3/5,Canada,Beauty,FedEx,Cancelled,N/A,,false,HZ-01,,"Refund issued, see ticket #4471"
+ORD-00123,08/01/2023,Germany,Pet Supplies,SF Express,Delivered,N/A,626.55,false,HZ-02,,Held at customs; missing HS code
+ORD-00233,22-Oct-2023,日本,Pet Supplies,SF Express,in_transit,N/A,$731.54,0,HZ-01,,"Carrier note: ""address incomplete"", resolved 3/14"
+ORD-00045,12/25/2023,us,Beauty,顺丰,In transit,25.41,$232.96,FALSE,HZ-02,,"Carrier note: ""address incomplete"", resolved 3/14"
+ORD-00387,03/24/2023,germany,Apparel,SF Express,Exception,,862.45,0,HZ-01,,
+ORD-00118,03/13/2023,Czech Republic,Electronics,Maersk,清关中,27.1kg,,TRUE,HZ-01,,重量与申报不符，已重新申报
+ORD-00009,2023/2/6,Netherlands,Pet Supplies,fedex,DELIVERED ,,123.37,1,SZ-07,,"Carrier note: ""address incomplete"", resolved 3/14"
+ORD-00444,,Japan,Beauty,,Cancelled,N/A,199.34 USD,yes,HZ-02,,重量与申报不符，已重新申报
+000091,2023-03-01,日本,Beauty,顺丰,已签收,,387.76 USD,0,SZ-07,,Duplicate of earlier order?
+ORD-00036,2023/8/8,United States,Beauty,顺丰,customs hold,29.3kg,661.91,1,SZ-07,,"Carrier note: ""address incomplete"", resolved 3/14"
+ORD-00137,,日本,Home & Kitchen,DHL Express,in_transit,21.07,440.06,0,SZ-07,,Duplicate of earlier order?
+ORD-00076,,United States,Electronics,dhl ,In transit,29.41,493.80,0,HZ-02,,
+ORD-00263,,Netherlands,Beauty,SF Express,Exception,N/A,,false,HZ-01,,"Carrier note: ""address incomplete"", resolved 3/14"
+ORD-00017,04/26/2023,Netherlands,Electronics,FedEx,customs hold,19.2kg,702.92 USD,0,HZ-01,,
+000042,2023/12/17,France,Pet Supplies,DHL Express,customs hold,19.37,261.49,,SZ-07,,
+ORD-00055,07/21/2023,Germany,Beauty,Maersk,Exception,N/A,314.55 USD,1,HZ-01,,
+ORD-00031,3-Feb-2023,Germany,Home & Kitchen,DHL Express,In Transit,3.56,$464.94,true,HZ-02,,"Carrier note: ""address incomplete"", resolved 3/14"
+000350,2023/8/2,us,Electronics,DHL,customs hold,24.12,91.67,1,HZ-01,,
+ORD-00230,08/16/2023,us,Apparel,DHL,Delivered,2.87,,,HZ-02,,
+ORD-00361,11/07/2023,Germany,Home & Kitchen,fedex,In transit,20.76,838.80,FALSE,HZ-01,,Duplicate of earlier order?
+ORD-00187,18-Aug-2023,日本,Beauty,顺丰,In Transit,N/A,588.12,TRUE,HZ-01,,重量与申报不符，已重新申报
+ORD-00475,2023/5/10,France,Home & Kitchen,fedex,Customs Hold,16.4kg,432.91,no,HZ-01,,Duplicate of earlier order?
+ORD-00164,2023/10/19,Canada,Home & Kitchen,顺丰,in_transit,N/A,681.42,no,HZ-01,,Held at customs; missing HS code
+ORD-00227,05/12/2023,Canada,Pet Supplies,DHL Express,delivered,23.28,$674.72,yes,SZ-07,,重量与申报不符，已重新申报
+ORD-00328,2023-11-14,Germany,Beauty,UPS,Cancelled,14.2kg,143.65,1,SZ-07,,"Carrier note: ""address incomplete"", resolved 3/14"
+ORD-00305,06/15/2023,USA,Pet Supplies,Maersk,Delivered,16.17,144.54 USD,,HZ-01,,重量与申报不符，已重新申报
+ORD-00460,,United States,Home & Kitchen,FedEx,In transit,,456.50,true,HZ-01,,
+ORD-00155,2023-05-20,Canada,Beauty,顺丰,Cancelled,6.17,,false,HZ-01,,
+ORD-00159,,Czech Republic,Pet Supplies,,已签收,18.29,315.67,yes,HZ-01,,Held at customs; missing HS code
+ORD-00347,01/08/2023,germany,Beauty,dhl ,delivered,23.11,,true,HZ-01,,Duplicate of earlier order?
+ORD-00288,7-Nov-2023,Czech Republic,Home & Kitchen,Maersk,Cancelled,98000,764.55,1,SZ-07,,
+ORD-00057,12-Apr-2023,日本,Electronics,DHL,Cancelled,N/A,88.92 USD,1,HZ-02,,Held at customs; missing HS code
+ORD-00248,2023-03-22,Germany,Apparel,UPS,customs hold,23.83,331.72 USD,false,HZ-01,,"Refund issued, see ticket #4471"
+ORD-00069,2023-02-09,germany,Beauty,dhl ,customs hold,5.24,,false,HZ-02,,重量与申报不符，已重新申报
+ORD-00274,2023-10-26,France,Home & Kitchen,SF Express,Cancelled,19.97,891.98,,HZ-01,,Duplicate of earlier order?
+ORD-00414,,Czech Republic,Apparel,UPS,Cancelled,,578.95 USD,yes,HZ-01,,
+ORD-00358,2023/11/21,日本,Apparel,fedex,,5.03,$297.38,false,HZ-01,,Held at customs; missing HS code
+000161,2023-08-28,日本,Beauty,dhl ,Cancelled,,39.05 USD,FALSE,HZ-01,,重量与申报不符，已重新申报
+ORD-00261,,germany,Electronics,DHL Express,Cancelled,15.2kg,117.02,true,SZ-07,,
+ORD-00088,12/27/2023,Canada,Electronics,,In transit,2.8kg,,false,HZ-02,,
+000070,2023/2/2,us,Apparel,Maersk,Customs Hold,,693.71 USD,false,HZ-01,,重量与申报不符，已重新申报
+ORD-00257,24-Dec-2023,USA,Home & Kitchen,DHL,DELIVERED ,1.9kg,511.21 USD,false,HZ-01,,"Refund issued, see ticket #4471"
+ORD-00319,10/07/2023,Netherlands,Pet Supplies,DHL,Delivered,28.7kg,283.24 USD,true,HZ-01,,"Buyer requested split shipment, partial delivery OK"
+000378,2023/6/17,Canada,Electronics,,已签收,,,false,HZ-02,,"Buyer requested split shipment, partial delivery OK"
+ORD-00410,,us,Home & Kitchen,DHL Express,,,$848.94,true,HZ-01,,"Carrier note: ""address incomplete"", resolved 3/14"
+ORD-00380,2023/10/15,Japan,Pet Supplies,SF Express,DELIVERED ,N/A,$746.60,yes,HZ-01,,"Refund issued, see ticket #4471"
+ORD-00344,,Netherlands,Electronics,UPS,In Transit,25.5kg,432.81,TRUE,HZ-01,,"Carrier note: ""address incomplete"", resolved 3/14"
+000357,20-Mar-2023,Czech Republic,Apparel,DHL Express,In Transit,24.07,,yes,HZ-01,,
+ORD-00324,2023/11/3,Czech Republic,Apparel,fedex,in_transit,,$697.41,true,SZ-07,,Duplicate of earlier order?
+ORD-00454,2023-04-18,us,Pet Supplies,Maersk,Exception,2.12,640.69,FALSE,HZ-01,,
+000280,11/16/2023,Japan,Electronics,DHL,Exception,,,true,HZ-01,,Duplicate of earlier order?
+ORD-00255,11-Apr-2023,France,Home & Kitchen,顺丰,In transit,19.27,$581.10,no,HZ-01,,
+ORD-00022,07/28/2023,us,Home & Kitchen,fedex,已签收,15.89,$20.70,yes,SZ-07,,"Buyer requested split shipment, partial delivery OK"
+ORD-00327,05/04/2023,日本,Beauty,Maersk,In transit,,330.72 USD,true,HZ-01,,
+ORD-00450,2023/9/11,USA,Electronics,顺丰,Customs Hold,4.98,866.10 USD,0,HZ-01,,重量与申报不符，已重新申报
+ORD-00382,10/22/2023,USA,Apparel,SF Express,delivered,N/A,,TRUE,HZ-02,,
+ORD-00193,2023/1/26,Netherlands,Beauty,fedex,DELIVERED ,N/A,356.49,,HZ-01,,
+ORD-00015,08/27/2023,Japan,Home & Kitchen,FedEx,customs hold,N/A,$84.61,no,HZ-01,,"Refund issued, see ticket #4471"
+ORD-00030,2023/6/18,Czech Republic,Home & Kitchen,SF Express,in_transit,21.72,$326.10,,SZ-07,,"Carrier note: ""address incomplete"", resolved 3/14"
+ORD-00192,2023-10-20,Netherlands,Beauty,顺丰,In Transit,N/A,452.11,no,HZ-01,,重量与申报不符，已重新申报
+ORD-00085,12/13/2023,United States,Beauty,DHL Express,In transit,,778.91 USD,FALSE,HZ-01,,Held at customs; missing HS code
+ORD-00235,05/04/2023,USA,Electronics,Maersk,Cancelled,,329.12,FALSE,HZ-01,,"Carrier note: ""address incomplete"", resolved 3/14"
+ORD-00089,13-Mar-2023,United States,Electronics,FedEx,Cancelled,12.1kg,$512.36,false,HZ-01,,"Refund issued, see ticket #4471"
+000455,2023-12-22,Germany,Home & Kitchen,SF Express,delivered,29.8kg,$618.34,yes,HZ-01,,
+000133,06/26/2023,Japan,Apparel,,Delivered,-4.5,$770.17,TRUE,HZ-01,,
+ORD-00208,2023-05-22,germany,Electronics,FedEx,Cancelled,7.27,424.58 USD,true,HZ-01,,"Buyer requested split shipment, partial delivery OK"
+ORD-00338,,United States,Beauty,SF Express,customs hold,N/A,247.11 USD,1,HZ-01,,
+ORD-00229,6-Dec-2023,日本,Pet Supplies,dhl ,DELIVERED ,,815.43,false,HZ-01,,
+ORD-00339,2023/2/21,日本,Electronics,SF Express,Customs Hold,N/A,725.32,0,HZ-01,,重量与申报不符，已重新申报
+ORD-00102,,Czech Republic,Pet Supplies,Maersk,Cancelled,1.9kg,$731.92,0,HZ-01,,
+ORD-00332,,Canada,Electronics,,In transit,27.75,$310.15,1,HZ-01,,"Carrier note: ""address incomplete"", resolved 3/14"
+ORD-00381,,germany,Home & Kitchen,DHL Express,已签收,4.64,,1,HZ-01,,
+ORD-00206,02/06/2023,germany,Beauty,DHL Express,Delivered,0.87,,yes,HZ-02,,"Refund issued, see ticket #4471"
+ORD-00114,2023-06-16,Japan,Pet Supplies,FedEx,Cancelled,13.21,$711.84,FALSE,SZ-07,,"Carrier note: ""address incomplete"", resolved 3/14"
+ORD-00185,,Japan,Apparel,dhl ,Customs Hold,10.56,264.47 USD,,HZ-01,,Duplicate of earlier order?
+ORD-00012,2023/7/4,Canada,Beauty,DHL,已签收,,415.33,FALSE,HZ-01,,Duplicate of earlier order?
+ORD-00433,2023/4/2,Germany,Home & Kitchen,dhl ,DELIVERED ,4.58,665.16,,SZ-07,,
+ORD-00083,2023/7/4,Canada,Pet Supplies,DHL Express,Exception,16.53,,,HZ-01,,
+ORD-00174,2023/6/10,United States,Home & Kitchen,SF Express,,N/A,$758.23,0,HZ-01,,"Carrier note: ""address incomplete"", resolved 3/14"
+ORD-00342,,Canada,Apparel,UPS,In Transit,N/A,753.23,FALSE,HZ-01,,
+ORD-00169,2023-03-17,Canada,Electronics,Maersk,Customs Hold,27.11,,yes,HZ-01,,"Carrier note: ""address incomplete"", resolved 3/14"
+ORD-00071,2023/4/26,United States,Beauty,DHL,Customs Hold,,,FALSE,HZ-01,,"Carrier note: ""address incomplete"", resolved 3/14"
+000168,2023-04-05,Germany,Pet Supplies,fedex,in_transit,,399.56,true,HZ-01,,Duplicate of earlier order?
+000329,,Germany,Apparel,,in_transit,7.94,$767.46,yes,HZ-01,,
+000273,07/26/2023,Canada,Home & Kitchen,FedEx,清关中,,381.88,,HZ-01,,Held at customs; missing HS code
+ORD-00337,,Japan,Home & Kitchen,FedEx,,16.79,515.06,true,HZ-01,,"Refund issued, see ticket #4471"
+ORD-00188,1-Jul-2023,USA,Electronics,UPS,customs hold,16.5kg,205.65,no,HZ-02,,"Carrier note: ""address incomplete"", resolved 3/14"
+ORD-00369,2023/4/25,germany,Electronics,顺丰,In Transit,6.87,$839.57,TRUE,HZ-01,,
+ORD-00190,09/08/2023,Netherlands,Apparel,UPS,DELIVERED ,22.12,752.22 USD,false,SZ-07,,"Carrier note: ""address incomplete"", resolved 3/14"
+ORD-00317,3-Jun-2023,USA,Beauty,SF Express,Exception,N/A,,,HZ-01,,
+ORD-00044,2023/5/1,United States,Pet Supplies,Maersk,delivered,,567.97,,HZ-01,,Duplicate of earlier order?
+ORD-00146,2023/10/23,Czech Republic,Home & Kitchen,DHL,Exception,,$43.13,1,SZ-07,,
+ORD-00141,09/12/2023,Canada,Beauty,dhl ,in_transit,N/A,,false,HZ-01,,"Carrier note: ""address incomplete"", resolved 3/14"
+ORD-00289,06/11/2023,Japan,Home & Kitchen,DHL Express,customs hold,26.18,$898.30,yes,SZ-07,,"Carrier note: ""address incomplete"", resolved 3/14"
+000287,2023-08-04,us,Home & Kitchen,,Delivered,,491.17 USD,FALSE,HZ-02,,
+000315,8-Feb-2023,Canada,Pet Supplies,SF Express,,,715.93 USD,yes,HZ-01,,"Carrier note: ""address incomplete"", resolved 3/14"
+ORD-00442,14-Oct-2023,日本,Pet Supplies,SF Express,Cancelled,4.64,$446.90,TRUE,HZ-01,,
+ORD-00172,03/05/2023,Japan,Electronics,DHL Express,已签收,6.7kg,,FALSE,HZ-01,,Duplicate of earlier order?
+ORD-00184,2023-01-20,Germany,Home & Kitchen,Maersk,Delivered,8.3kg,826.79,1,HZ-01,,
+ORD-00394,26-Mar-2023,germany,Pet Supplies,顺丰,DELIVERED ,N/A,89.52,false,SZ-07,,"Refund issued, see ticket #4471"
+ORD-00113,25-Dec-2023,germany,Pet Supplies,Maersk,Customs Hold,27.92,26.66 USD,yes,SZ-07,,
+ORD-00108,,Czech Republic,Beauty,Maersk,Cancelled,9.99,,TRUE,HZ-01,,Held at customs; missing HS code
+ORD-00278,11/15/2023,Canada,Home & Kitchen,UPS,In transit,20.28,733.51,no,HZ-02,,
+ORD-00370,2023/8/15,United States,Home & Kitchen,顺丰,customs hold,7.20,599.96 USD,0,HZ-01,,Held at customs; missing HS code
+ORD-00480,2023-09-04,Germany,Beauty,Maersk,In transit,N/A,389.08,yes,HZ-01,,Held at customs; missing HS code
+ORD-00479,6-Dec-2023,Germany,Home & Kitchen,FedEx,in_transit,29.23,146.60,TRUE,HZ-01,,
+ORD-00253,2023/4/2,Czech Republic,Electronics,,In Transit,7.26,684.57 USD,,HZ-01,,"Buyer requested split shipment, partial delivery OK"
+ORD-00271,02/02/2023,Japan,Home & Kitchen,SF Express,,N/A,251.49,,HZ-01,,"Carrier note: ""address incomplete"", resolved 3/14"
+ORD-00440,10/20/2023,germany,Beauty,FedEx,In Transit,,,false,SZ-07,,
+ORD-00052,2023/2/12,Germany,Home & Kitchen,fedex,delivered,11.8kg,,TRUE,HZ-01,,
+ORD-00087,2023/2/4,Czech Republic,Electronics,fedex,DELIVERED ,5.02,138.13 USD,TRUE,HZ-02,,重量与申报不符，已重新申报
+ORD-00376,2-Dec-2023,Canada,Electronics,FedEx,Delivered,N/A,588.81,0,HZ-01,,Duplicate of earlier order?
+ORD-00445,12/27/2023,Canada,Apparel,DHL,清关中,28.76,,,HZ-01,,重量与申报不符，已重新申报
+ORD-00179,25-Sep-2023,United States,Home & Kitchen,dhl ,In transit,14.1kg,$48.29,true,SZ-07,,"Buyer requested split shipment, partial delivery OK"
+ORD-00360,02/15/2023,us,Pet Supplies,DHL,Exception,11.1kg,387.10 USD,,HZ-01,,Held at customs; missing HS code
+ORD-00149,2023-11-09,France,Home & Kitchen,DHL,Delivered,,269.48,TRUE,SZ-07,,
+ORD-00234,2023/4/8,France,Home & Kitchen,DHL Express,Exception,26.58,779.81,no,SZ-07,,Held at customs; missing HS code
+ORD-00260,4-Aug-2023,USA,Electronics,SF Express,,7.7kg,847.32,FALSE,HZ-01,,
+ORD-00211,28-Sep-2023,France,Beauty,DHL,Exception,20.40,$197.59,true,HZ-01,,
+ORD-00222,12/10/2023,France,Electronics,,清关中,N/A,624.84,false,HZ-01,,
+ORD-00003,05/14/2023,Japan,Home & Kitchen,,In Transit,1.59,52.23,,HZ-01,,
+000189,2023-03-18,日本,Apparel,顺丰,Exception,9.01,262.06,TRUE,SZ-07,,Held at customs; missing HS code
+ORD-00095,,Czech Republic,Electronics,,In Transit,,807.71 USD,,HZ-01,,重量与申报不符，已重新申报
+ORD-00478,2023/4/9,United States,Electronics,UPS,In transit,N/A,649.93,0,HZ-01,,Held at customs; missing HS code
+ORD-00048,1-Aug-2023,Czech Republic,Home & Kitchen,Maersk,Customs Hold,6.14,894.02,yes,HZ-02,,"Buyer requested split shipment, partial delivery OK"
+000035,08/17/2023,Germany,Apparel,DHL,In Transit,N/A,568.77,TRUE,HZ-01,,
+ORD-00002,2023-09-14,日本,Home & Kitchen,FedEx,Exception,2.28,,TRUE,SZ-07,,Held at customs; missing HS code
+ORD-00355,,日本,Apparel,FedEx,Delivered,N/A,335.89 USD,FALSE,HZ-01,,
+ORD-00443,15-Jul-2023,United States,Beauty,UPS,delivered,26.3kg,99.79 USD,TRUE,HZ-02,,"Carrier note: ""address incomplete"", resolved 3/14"
+ORD-00402,,Czech Republic,Apparel,,Delivered,,205.92 USD,FALSE,HZ-02,,
+000434,2023/1/24,France,Beauty,SF Express,delivered,13.13,697.42,true,SZ-07,,
+000441,,germany,Electronics,,customs hold,9.7kg,891.78 USD,0,HZ-01,,
+ORD-00457,2023/6/22,Netherlands,Home & Kitchen,dhl ,清关中,17.6kg,839.41 USD,1,HZ-01,,"Carrier note: ""address incomplete"", resolved 3/14"
+ORD-00383,2023-03-14,Japan,Beauty,fedex,,2.30,870.98 USD,,SZ-07,,
+ORD-00386,16-Aug-2023,Canada,Electronics,顺丰,in_transit,24.03,197.40 USD,false,HZ-02,,
+ORD-00389,2023/12/25,germany,Electronics,顺丰,Cancelled,N/A,848.60,TRUE,HZ-01,,Held at customs; missing HS code
+ORD-00134,03/28/2023,USA,Beauty,UPS,,18.3kg,593.11 USD,true,HZ-01,,Held at customs; missing HS code
+ORD-00054,28-Nov-2023,Czech Republic,Home & Kitchen,Maersk,DELIVERED ,13.64,,true,HZ-02,,Held at customs; missing HS code
+ORD-00082,27-Jan-2023,Netherlands,Apparel,DHL Express,清关中,18.06,$899.89,yes,HZ-01,,"Buyer requested split shipment, partial delivery OK"
+ORD-00199,2023-07-06,Canada,Pet Supplies,,delivered,6.39,266.61,no,SZ-07,,
+ORD-00281,2023/6/26,Germany,Home & Kitchen,Maersk,已签收,18.8kg,472.46,TRUE,SZ-07,,"Carrier note: ""address incomplete"", resolved 3/14"
+ORD-00411,,France,Apparel,DHL,in_transit,N/A,458.06 USD,true,HZ-01,,
+ORD-00400,03/06/2023,Czech Republic,Home & Kitchen,FedEx,in_transit,9.89,$87.51,FALSE,SZ-07,,"Refund issued, see ticket #4471"
+ORD-00090,,Czech Republic,Pet Supplies,fedex,Exception,N/A,$759.50,1,HZ-01,,"Buyer requested split shipment, partial delivery OK"
+ORD-00472,3-Jun-2023,日本,Apparel,Maersk,清关中,0.31,90.03,0,SZ-07,,"Refund issued, see ticket #4471"
+ORD-00307,02/25/2023,USA,Apparel,DHL,In transit,6.49,714.18,1,SZ-07,,"Refund issued, see ticket #4471"
+ORD-00430,16-Aug-2023,germany,Pet Supplies,DHL,in_transit,,$129.30,,SZ-07,,重量与申报不符，已重新申报
+ORD-00237,,France,Home & Kitchen,Maersk,delivered,24.05,$767.57,0,HZ-02,,"Refund issued, see ticket #4471"
+ORD-00202,2023/3/17,Czech Republic,Pet Supplies,SF Express,,1.07,$685.47,TRUE,HZ-01,,重量与申报不符，已重新申报
+ORD-00340,,United States,Beauty,FedEx,,N/A,$557.19,false,HZ-01,,"Buyer requested split shipment, partial delivery OK"
+000028,02/25/2023,France,Apparel,DHL Express,In Transit,N/A,,true,HZ-02,,"Buyer requested split shipment, partial delivery OK"
+000007,2023-08-03,Germany,Beauty,dhl ,Delivered,17.9kg,311.39 USD,yes,SZ-07,,Duplicate of earlier order?
+ORD-00240,05/04/2023,germany,Pet Supplies,Maersk,in_transit,24.16,335.35 USD,0,HZ-01,,重量与申报不符，已重新申报
+ORD-00246,01/21/2023,France,Electronics,fedex,In transit,26.3kg,,yes,HZ-01,,"Refund issued, see ticket #4471"
+ORD-00366,,Germany,Apparel,DHL Express,Delivered,25.40,$255.66,true,HZ-02,,
+ORD-00398,2023/4/21,日本,Electronics,DHL Express,已签收,N/A,$212.08,yes,HZ-01,,
+ORD-00241,02/02/2023,Germany,Apparel,FedEx,Cancelled,10.0kg,96.88,0,HZ-01,,Duplicate of earlier order?
+ORD-00138,11/03/2023,Canada,Apparel,DHL,Delivered,,,TRUE,HZ-01,,
+ORD-00156,2023-06-25,us,Beauty,,customs hold,16.3kg,,yes,SZ-07,,重量与申报不符，已重新申报
+ORD-00282,11-May-2023,us,Apparel,顺丰,delivered,9.3kg,59.50,,HZ-02,,
+ORD-00408,2023-01-27,us,Pet Supplies,UPS,Delivered,,287.59 USD,yes,SZ-07,,
+ORD-00267,17-Mar-2023,United States,Electronics,顺丰,Exception,N/A,$143.52,1,HZ-01,,Held at customs; missing HS code
+ORD-00020,2023/2/26,Czech Republic,Beauty,dhl ,Cancelled,N/A,434.41,true,HZ-01,,
+ORD-00325,2023-04-17,USA,Apparel,Maersk,DELIVERED ,10.55,744.68,yes,HZ-01,,"Carrier note: ""address incomplete"", resolved 3/14"
+ORD-00194,,us,Apparel,FedEx,In transit,17.53,,TRUE,HZ-01,,
+ORD-00426,,USA,Pet Supplies,DHL Express,已签收,14.25,429.98 USD,FALSE,HZ-01,,Held at customs; missing HS code
+ORD-00453,09/28/2023,germany,Electronics,,已签收,14.53,510.22 USD,yes,HZ-01,,"Buyer requested split shipment, partial delivery OK"
+000476,06/24/2023,us,Beauty,fedex,Exception,13.76,777.03 USD,no,HZ-01,,"Carrier note: ""address incomplete"", resolved 3/14"
+ORD-00125,2023-08-15,日本,Beauty,Maersk,Exception,,705.88,true,HZ-01,,
+000217,,日本,Home & Kitchen,FedEx,Exception,N/A,$842.62,FALSE,HZ-01,,重量与申报不符，已重新申报
+ORD-00335,2023/4/1,Canada,Electronics,顺丰,In Transit,N/A,$631.90,,HZ-01,,Duplicate of earlier order?
+ORD-00456,09/27/2023,United States,Pet Supplies,FedEx,DELIVERED ,27.1kg,467.54 USD,false,HZ-01,,"Buyer requested split shipment, partial delivery OK"
+ORD-00205,2023-05-16,us,Beauty,,已签收,9.2kg,,1,HZ-01,,Held at customs; missing HS code
+ORD-00170,2023-04-08,Netherlands,Apparel,SF Express,DELIVERED ,N/A,681.33 USD,TRUE,HZ-01,,
+ORD-00060,08/15/2023,United States,Electronics,DHL Express,DELIVERED ,27.9kg,,,HZ-01,,Duplicate of earlier order?
+ORD-00117,2023/6/4,Netherlands,Home & Kitchen,SF Express,Exception,N/A,710.82,TRUE,HZ-01,,"Buyer requested split shipment, partial delivery OK"
+ORD-00008,15-Jan-2023,USA,Pet Supplies,dhl ,Customs Hold,N/A,,TRUE,HZ-01,,"Carrier note: ""address incomplete"", resolved 3/14"
+ORD-00186,10-Oct-2023,us,Home & Kitchen,Maersk,In Transit,,118.54,0,SZ-07,,"Buyer requested split shipment, partial delivery OK"
+ORD-00214,2023/11/23,us,Beauty,UPS,Exception,26.93,34.38 USD,FALSE,HZ-01,,"Carrier note: ""address incomplete"", resolved 3/14"
+ORD-00160,2023-03-09,germany,Electronics,DHL Express,In transit,23.1kg,,FALSE,HZ-01,,
+ORD-00226,21-Feb-2023,Canada,Pet Supplies,fedex,Exception,N/A,443.60,false,HZ-01,,
+ORD-00109,,日本,Home & Kitchen,,DELIVERED ,N/A,860.48,true,HZ-01,,
+ORD-00122,4-Nov-2023,us,Beauty,顺丰,Delivered,8.36,,TRUE,HZ-02,,Held at customs; missing HS code
+ORD-00449,26-Aug-2023,Canada,Home & Kitchen,SF Express,已签收,,,0,HZ-02,,"Refund issued, see ticket #4471"
+ORD-00236,12/16/2023,Japan,Beauty,FedEx,customs hold,N/A,587.51,FALSE,SZ-07,,
+ORD-00262,21-Apr-2023,Netherlands,Beauty,FedEx,in_transit,,320.94,TRUE,HZ-01,,
+ORD-00047,2023/12/7,Germany,Pet Supplies,fedex,Customs Hold,29.18,62.11 USD,0,HZ-02,,
+ORD-00309,04/20/2023,Germany,Apparel,dhl ,,29.49,73.16 USD,0,SZ-07,,
+ORD-00436,2023/6/4,germany,Beauty,SF Express,In Transit,20.24,184.13 USD,0,HZ-01,,Duplicate of earlier order?
+ORD-00330,4-Dec-2023,USA,Electronics,dhl ,,,$789.04,1,HZ-02,,重量与申报不符，已重新申报
+ORD-00265,2023-05-10,germany,Home & Kitchen,顺丰,已签收,28.64,433.82 USD,true,HZ-01,,Duplicate of earlier order?
+ORD-00167,03/11/2023,France,Home & Kitchen,DHL Express,Cancelled,N/A,295.73,0,SZ-07,,
+ORD-00293,2023/10/20,Netherlands,Beauty,FedEx,已签收,8.89,,TRUE,HZ-01,,Held at customs; missing HS code
+ORD-00019,2023-10-27,Czech Republic,Apparel,dhl ,Exception,6.3kg,427.31 USD,FALSE,HZ-02,,"Buyer requested split shipment, partial delivery OK"
+000063,11/27/2023,Czech Republic,Pet Supplies,FedEx,customs hold,N/A,,false,HZ-01,,Held at customs; missing HS code
+ORD-00477,,Canada,Apparel,FedEx,in_transit,10.95,497.18 USD,no,HZ-02,,
+ORD-00295,2023/9/4,United States,Electronics,dhl ,Delivered,4.54,484.73,1,HZ-01,,"Carrier note: ""address incomplete"", resolved 3/14"
+ORD-00396,08/26/2023,日本,Home & Kitchen,顺丰,清关中,,530.90,1,HZ-01,,
+000301,06/07/2023,Canada,Apparel,DHL,DELIVERED ,3.20,36.90,no,HZ-01,,Duplicate of earlier order?
+ORD-00242,05/06/2023,Japan,Apparel,SF Express,DELIVERED ,14.74,$109.31,yes,SZ-07,,"Carrier note: ""address incomplete"", resolved 3/14"
+ORD-00120,,USA,Electronics,FedEx,Cancelled,N/A,581.29,no,SZ-07,,"Refund issued, see ticket #4471"
+ORD-00124,2023/11/4,Netherlands,Apparel,fedex,Exception,25.60,762.63,FALSE,HZ-02,,"Buyer requested split shipment, partial delivery OK"
+ORD-00435,2023-02-02,germany,Electronics,dhl ,Customs Hold,2.71,$879.30,true,HZ-01,,
+ORD-00438,20-Jan-2023,Canada,Beauty,Maersk,DELIVERED ,,713.50,TRUE,SZ-07,,"Refund issued, see ticket #4471"
+ORD-00363,2023-05-03,France,Home & Kitchen,Maersk,Delivered,,593.26,FALSE,HZ-01,,
+ORD-00103,07/06/2023,USA,Home & Kitchen,dhl ,Delivered,2.03,$813.93,,HZ-01,,
+ORD-00051,11-Jan-2023,Netherlands,Home & Kitchen,FedEx,Cancelled,N/A,314.81 USD,TRUE,HZ-01,,"Carrier note: ""address incomplete"", resolved 3/14"
+ORD-00151,2023/11/26,Czech Republic,Beauty,顺丰,In Transit,11.03,$137.26,no,HZ-01,,"Carrier note: ""address incomplete"", resolved 3/14"
+000119,2023/3/15,France,Apparel,,已签收,N/A,,true,HZ-01,,Duplicate of earlier order?
+ORD-00313,11/19/2023,Netherlands,Beauty,Maersk,In Transit,,746.96 USD,,HZ-01,,
+000294,10/16/2023,United States,Pet Supplies,DHL Express,Customs Hold,1.66,$773.45,false,HZ-01,,"Buyer requested split shipment, partial delivery OK"
+ORD-00346,2023-08-25,us,Pet Supplies,Maersk,delivered,24.43,$345.99,no,HZ-01,,"Refund issued, see ticket #4471"
+ORD-00297,06/18/2023,USA,Electronics,SF Express,Delivered,N/A,638.59,no,HZ-02,,
+ORD-00011,,germany,Pet Supplies,,in_transit,8.03,749.34,true,SZ-07,,
+ORD-00106,11-Feb-2023,France,Home & Kitchen,fedex,Exception,7.12,896.98 USD,,HZ-02,,"Refund issued, see ticket #4471"
+ORD-00097,4-Dec-2023,Japan,Beauty,UPS,In Transit,16.7kg,,1,HZ-01,,
+ORD-00367,10/19/2023,United States,Home & Kitchen,fedex,Delivered,11.61,$754.49,yes,HZ-01,,重量与申报不符，已重新申报
+ORD-00320,,Canada,Beauty,DHL Express,,22.15,413.48 USD,yes,HZ-02,,
+ORD-00018,20-Dec-2023,Czech Republic,Apparel,UPS,delivered,14.27,890.73 USD,false,HZ-01,,"Buyer requested split shipment, partial delivery OK"
+ORD-00348,2023-02-19,Czech Republic,Electronics,SF Express,Exception,,415.12,false,HZ-02,,Duplicate of earlier order?
+ORD-00065,11/13/2023,United States,Apparel,Maersk,delivered,N/A,447.71 USD,false,HZ-02,,"Buyer requested split shipment, partial delivery OK"
+ORD-00171,06/17/2023,Czech Republic,Home & Kitchen,Maersk,In Transit,13.4kg,$880.94,true,HZ-01,,Held at customs; missing HS code
+ORD-00165,04/26/2023,Canada,Home & Kitchen,顺丰,Cancelled,,,false,HZ-01,,
+ORD-00390,,us,Apparel,fedex,Exception,25.10,337.78 USD,yes,HZ-01,,
+ORD-00059,2023-07-10,USA,Home & Kitchen,SF Express,Cancelled,,90.60,0,SZ-07,,Duplicate of earlier order?
+ORD-00191,05/26/2023,Netherlands,Home & Kitchen,DHL,In transit,,740.50,,SZ-07,,
+ORD-00377,10-Apr-2023,日本,Electronics,dhl ,In transit,8.70,$201.54,TRUE,HZ-01,,
+ORD-00006,25-Mar-2023,USA,Beauty,SF Express,Delivered,,$264.84,FALSE,SZ-07,,重量与申报不符，已重新申报
+ORD-00401,2023-02-22,日本,Beauty,SF Express,Customs Hold,15.97,,FALSE,HZ-01,,"Refund issued, see ticket #4471"
+ORD-00195,,Netherlands,Pet Supplies,Maersk,Cancelled,9.1kg,,1,HZ-02,,Duplicate of earlier order?
+ORD-00096,9-Nov-2023,Netherlands,Electronics,fedex,delivered,5.63,340.06,,HZ-01,,重量与申报不符，已重新申报
+ORD-00200,,United States,Apparel,SF Express,delivered,N/A,$625.03,TRUE,HZ-01,,"Buyer requested split shipment, partial delivery OK"

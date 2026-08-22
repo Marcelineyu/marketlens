@@ -19,6 +19,15 @@
   margin: 8px 0 0;
 }
 
+.profile-note {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.45;
+  max-width: 260px;
+  white-space: normal;
+}
+
 .summary .eyebrow {
   color: var(--teal);
 }

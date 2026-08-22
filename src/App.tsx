@@ -55,7 +55,7 @@ export default function App() {
       <AppHeader onReset={reset} dataset={dataset.name} />
       <ScrollNavigation />
       <main className="dashboard">
-        <DatasetSummary dataset={dataset} rows={filteredRows} />
+        <DatasetSummary dataset={dataset} />
         <DatasetFilters dataset={dataset} value={filters} onChange={setFilters} />
         <OptionalCleaning dataset={dataset} onDatasetChange={setDataset} />
         <section className="charts">

@@ -21,7 +21,7 @@ export default function IdentifierOnlyState({
       <AppHeader onReset={onReset} dataset={dataset.name} />
       <ScrollNavigation />
       <main className="dashboard">
-        <DatasetSummary dataset={dataset} rows={dataset.rows} />
+        <DatasetSummary dataset={dataset} />
         <section className="unsupported-state" aria-labelledby="identifier-only-title">
           <div className="empty-symbol">
             <span />

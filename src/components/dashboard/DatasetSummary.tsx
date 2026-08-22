@@ -1,14 +1,13 @@
-import { Dataset, Row } from '../../types';
-import { summarize } from '../../analytics/dataSummary';
+import { Dataset } from '../../types';
 import { formatNumber } from '../../utils/format';
 
 interface DatasetSummaryProps {
   dataset: Dataset;
-  rows: Row[];
 }
 
-export default function DatasetSummary({ dataset, rows }: DatasetSummaryProps) {
-  const summary = summarize(rows, dataset.profiles);
+export default function DatasetSummary({ dataset }: DatasetSummaryProps) {
+  const { profile } = dataset;
+  const { typeCounts } = profile;
 
   return (
     <section className="summary">
@@ -16,25 +15,25 @@ export default function DatasetSummary({ dataset, rows }: DatasetSummaryProps) {
         <div className="eyebrow">Current dataset</div>
         <h1>{dataset.name}</h1>
         <p>
-          {formatNumber(summary.rows)} rows · {summary.columns} columns · {summary.missing}{' '}
-          missing values · {summary.duplicates} duplicate rows
+          {formatNumber(profile.rowCount)} rows · {dataset.profiles.length} columns ·{' '}
+          {profile.missingValues} missing values · {profile.duplicateRows} duplicate rows
         </p>
       </div>
       <div className="stats">
         <div>
-          <b>{summary.numeric}</b>
+          <b>{typeCounts.numeric}</b>
           <span>Numeric</span>
         </div>
         <div>
-          <b>{summary.categorical}</b>
+          <b>{typeCounts.categorical}</b>
           <span>Categorical</span>
         </div>
         <div>
-          <b>{summary.date}</b>
+          <b>{typeCounts.date}</b>
           <span>Date</span>
         </div>
         <div>
-          <b>{summary.binary}</b>
+          <b>{typeCounts.binary}</b>
           <span>Binary</span>
         </div>
       </div>
