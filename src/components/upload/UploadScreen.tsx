@@ -1,9 +1,11 @@
-import { ChangeEvent, DragEvent, useState } from 'react';
+import { ChangeEvent, DragEvent } from 'react';
 import { bankSample, campaignSample, ecommerceSample } from '../../data/samples';
 import { Dataset, Row } from '../../types';
-import { parseFile } from '../../utils/fileParsing';
+import { UPLOAD_SIZE_HINT } from '../../utils/fileParsing';
 import { makeDataset } from '../../utils/dataset';
+import { useDatasetFileLoader } from '../../hooks/useDatasetFileLoader';
 import AppHeader from '../layout/AppHeader';
+import LargeFilePrompt from './LargeFilePrompt';
 import { ArrowIcon, UploadIcon } from '../icons/Icons';
 
 interface UploadScreenProps {
@@ -17,25 +19,8 @@ const SAMPLE_DATASETS: ReadonlyArray<[string, Row[]]> = [
 ];
 
 export default function UploadScreen({ onLoad }: UploadScreenProps) {
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
-
-  const loadFile = async (file?: File) => {
-    if (!file) {
-      return;
-    }
-
-    setLoading(true);
-    setError('');
-
-    try {
-      onLoad(makeDataset(file.name, await parseFile(file)));
-    } catch (caught) {
-      setError((caught as Error).message);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const { loading, error, pendingLargeFile, loadFile, analyzeAll, analyzeSample } =
+    useDatasetFileLoader(onLoad);
 
   return (
     <main className="start">
@@ -72,8 +57,16 @@ export default function UploadScreen({ onLoad }: UploadScreenProps) {
         <strong aria-live="polite">
           {loading ? 'Reading your data…' : 'Drop a CSV or Excel file here'}
         </strong>
-        <span>or click to browse · up to 10 MB</span>
+        <span>{UPLOAD_SIZE_HINT}</span>
       </label>
+      {pendingLargeFile && (
+        <LargeFilePrompt
+          estimatedRows={pendingLargeFile.estimatedRows}
+          loading={loading}
+          onAnalyzeAll={analyzeAll}
+          onAnalyzeSample={analyzeSample}
+        />
+      )}
       {error && (
         <div role="alert" className="error">
           {error}

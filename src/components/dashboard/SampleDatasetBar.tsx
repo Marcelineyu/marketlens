@@ -1,8 +1,9 @@
 import { ChangeEvent, useRef } from 'react';
-import { parseFile } from '../../utils/fileParsing';
 import { makeDataset } from '../../utils/dataset';
 import { Dataset } from '../../types';
 import { SAMPLE_DATASET_NAME } from '../../utils/sampleDataset';
+import { useDatasetFileLoader } from '../../hooks/useDatasetFileLoader';
+import LargeFilePrompt from '../upload/LargeFilePrompt';
 
 interface SampleDatasetBarProps {
   onUpload: (dataset: Dataset) => void;
@@ -11,15 +12,8 @@ interface SampleDatasetBarProps {
 
 export default function SampleDatasetBar({ onUpload, onDismiss }: SampleDatasetBarProps) {
   const inputRef = useRef<HTMLInputElement>(null);
-
-  const loadFile = async (file?: File) => {
-    if (!file) return;
-    try {
-      onUpload(makeDataset(file.name, await parseFile(file)));
-    } catch (error) {
-      window.alert((error as Error).message);
-    }
-  };
+  const { loading, error, pendingLargeFile, loadFile, analyzeAll, analyzeSample } =
+    useDatasetFileLoader(onUpload);
 
   return (
     <div className="sample-bar" role="status">
@@ -46,6 +40,19 @@ export default function SampleDatasetBar({ onUpload, onDismiss }: SampleDatasetB
         }}
       />
       <span className="visually-hidden">Currently showing {SAMPLE_DATASET_NAME}</span>
+      {error && (
+        <div role="alert" className="error sample-bar-error">
+          {error}
+        </div>
+      )}
+      {pendingLargeFile && (
+        <LargeFilePrompt
+          estimatedRows={pendingLargeFile.estimatedRows}
+          loading={loading}
+          onAnalyzeAll={analyzeAll}
+          onAnalyzeSample={analyzeSample}
+        />
+      )}
     </div>
   );
 }

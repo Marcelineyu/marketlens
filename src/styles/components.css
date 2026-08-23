@@ -183,6 +183,35 @@
   padding: 12px 15px;
 }
 
+.large-file-prompt {
+  max-width: 700px;
+  margin: 14px auto 0;
+  padding: 16px 18px;
+  border-radius: 14px;
+  border: 1px solid rgba(124, 140, 255, 0.38);
+  background: rgba(24, 35, 58, 0.92);
+  box-shadow: var(--shadow);
+  animation: rise-in 0.35s ease both;
+}
+
+.large-file-prompt p {
+  margin: 0;
+  color: var(--text-2);
+  line-height: 1.55;
+}
+
+.large-file-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.sample-bar-error {
+  margin: 12px 0 0;
+  max-width: none;
+}
+
 .filterbar {
   display: flex;
   align-items: end;
