@@ -230,6 +230,7 @@ async function checkFileTypes(page) {
       file: join(stressDir, 'over_15mb.csv'),
       component: 'fileParsing / UploadScreen',
       selector: '[role="alert"]',
+      expectAlert: true,
     },
   ];
 
